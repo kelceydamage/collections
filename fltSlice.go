@@ -27,10 +27,10 @@
 // 	Max()
 //	Index(int)
 
-// Package collections is a library of types and methods that make manipulating slices a lot easier by 
+// Package collections is a library of types and methods that make manipulating slices a lot easier by
 // providing some basic functionality
 //---------------------------------------------------------------------------------------------------- <-100
-package colletions
+package collections
 
 // Code
 //---------------------------------------------------------------------------------------------------- <-100

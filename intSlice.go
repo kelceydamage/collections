@@ -18,15 +18,15 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//	FltSlice
+//  FltSlice
 //
 // Struct Methods:
-// 	Avg()
-//	Min()
-//	MinNonZero()
-// 	Max()
+//  Avg()
+//  Min()
+//  MinNonZero()
+//  Max()
 //  MaxNonZero()
-//	Index(int)
+//  Index(int)
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -40,7 +40,7 @@ package collections
 // IntSlice is a slice of ints with common methods.
 type IntSlice []int
 
-// Index retrives the first index [i] for the provided value [j] (int).
+// Index retrives the first index [i] from the left, for the provided value [j] (int).
 func (s *IntSlice) Index(j int) int {
 	for i, v := range *s {
 		if v == j {

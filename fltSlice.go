@@ -18,15 +18,15 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//	FltSlice
+//  FltSlice
 //
 // Struct Methods:
-// 	Avg()
-//	Min()
-//	MinNonZero()
-// 	Max()
+//  Avg()
+//  Min()
+//  MinNonZero()
+//  Max()
 //  MaxNonZero()
-//	Index(int)
+//  Index(int)
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -40,7 +40,7 @@ package collections
 // FltSlice is a slice off float64 with common methods.
 type FltSlice []float64
 
-// Index retrives the first index [i] for the provided value [j] (int).
+// Index retrives the first index [i] from the left, for the provided value [j] (int).
 func (s *FltSlice) Index(j float64) int {
 	for i, v := range *s {
 		if v == j {

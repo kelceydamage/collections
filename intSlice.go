@@ -49,29 +49,33 @@ func (s *IntSlice) Min() (int, int) {
 			k = i
 		}
 	}
-	return k, n
+	return n, k
 }
 
 // MinNonZero returns the smallest non-zero value in the slice.
-func (s *IntSlice) MinNonZero() int {
-	n := s.Max()
+func (s *IntSlice) MinNonZero() (int, int) {
+	n, _ := s.Max()
+	k := 0
 	for i := range *s {
 		if (*s)[i] != 0 {
 			if (*s)[i] < n {
 				n = (*s)[i]
+				k = i
 			}
 		}
 	}
-	return n
+	return n, k
 }
 
 // Max returns the largest value in the slice.
-func (s *IntSlice) Max() int {
+func (s *IntSlice) Max() (int, int) {
 	n := (*s)[0]
+	k := 0
 	for i := range *s {
 		if (*s)[i] > n {
 			n = (*s)[i]
+			k = i
 		}
 	}
-	return n
+	return n, k
 }

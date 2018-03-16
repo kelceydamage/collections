@@ -14,13 +14,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-# Doc
-#---------------------------------------------------------------------------------------------------- <-100
+// Doc
+//---------------------------------------------------------------------------------------------------- <-100
+
+// Struct Type:
+//	IntSlice
+//
+// Struct Methods:
+// 	Avg()
+//	Min()
+//	MinNonZero()
+// 	Max()
+//	Index(int)
+
+// Code
+//---------------------------------------------------------------------------------------------------- <-100
 
 // IntSlice is a slice on ints with common methods.
 type IntSlice []int
 
-// Index retrives the first index for the provided value [j] (int).
+// Index retrives the first index [i] for the provided value [j] (int).
 func (s *IntSlice) Iindex(j int) int {
 	for i, v := range *s {
 		if v == j {
@@ -39,7 +52,7 @@ func (s *IntSlice) Avg() int {
 	return n / len((*s))
 }
 
-// Min returns the smallest value in the slice.
+// Min returns the smallest value [n] in the slice along with its index [k].
 func (s *IntSlice) Min() (int, int) {
 	n := (*s)[0]
 	k := 0
@@ -52,7 +65,7 @@ func (s *IntSlice) Min() (int, int) {
 	return n, k
 }
 
-// MinNonZero returns the smallest non-zero value in the slice.
+// MinNonZero returns the smallest non-zero value [n] in the slice along with its index [k].
 func (s *IntSlice) MinNonZero() (int, int) {
 	n, _ := s.Max()
 	k := 0
@@ -67,7 +80,7 @@ func (s *IntSlice) MinNonZero() (int, int) {
 	return n, k
 }
 
-// Max returns the largest value in the slice.
+// Max returns the largest value [n] in the slice along with its index [k].
 func (s *IntSlice) Max() (int, int) {
 	n := (*s)[0]
 	k := 0

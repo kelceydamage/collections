@@ -25,20 +25,23 @@
 //	Min()
 //	MinNonZero()
 // 	Max()
+//  MaxNonZero()
 //	Index(int)
+
+//---------------------------------------------------------------------------------------------------- <-100
 
 // Package collections is a library of types and methods that make manipulating slices a lot easier by
 // providing some basic functionality
-//---------------------------------------------------------------------------------------------------- <-100
 package collections
 
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
+
 // FltSlice is a slice off float64 with common methods.
 type FltSlice []float64
 
 // Index retrives the first index [i] for the provided value [j] (int).
-func (s *FltSlice) Iindex(j float64) int {
+func (s *FltSlice) Index(j float64) int {
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -92,6 +95,22 @@ func (s *FltSlice) Max() (float64, int) {
 		if (*s)[i] > n {
 			n = (*s)[i]
 			k = i
+		}
+	}
+	return n, k
+}
+
+// MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
+// Intended for use with negative integers.
+func (s *FltSlice) MaxNonZero() (float64, int) {
+	n, _ := s.Min()
+	k := 0
+	for i := range *s {
+		if (*s)[i] != 0 {
+			if (*s)[i] > n {
+				n = (*s)[i]
+				k = i
+			}
 		}
 	}
 	return n, k

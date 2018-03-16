@@ -25,20 +25,23 @@
 //	Min()
 //	MinNonZero()
 // 	Max()
+//  MaxNonZero()
 //	Index(int)
+
+//---------------------------------------------------------------------------------------------------- <-100
 
 // Package collections is a library of types and methods that make manipulating slices a lot easier by
 // providing some basic functionality
-//---------------------------------------------------------------------------------------------------- <-100
 package collections
 
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
-// IntSlice is a slice on ints with common methods.
+
+// IntSlice is a slice of ints with common methods.
 type IntSlice []int
 
 // Index retrives the first index [i] for the provided value [j] (int).
-func (s *IntSlice) Iindex(j int) int {
+func (s *IntSlice) Index(j int) int {
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -92,6 +95,22 @@ func (s *IntSlice) Max() (int, int) {
 		if (*s)[i] > n {
 			n = (*s)[i]
 			k = i
+		}
+	}
+	return n, k
+}
+
+// MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
+// Intended for use with negative integers.
+func (s *IntSlice) MaxNonZero() (int, int) {
+	n, _ := s.Min()
+	k := 0
+	for i := range *s {
+		if (*s)[i] != 0 {
+			if (*s)[i] > n {
+				n = (*s)[i]
+				k = i
+			}
 		}
 	}
 	return n, k

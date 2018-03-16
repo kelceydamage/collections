@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//	IntSlice
+//	FltSlice
 //
 // Struct Methods:
 // 	Avg()
@@ -27,9 +27,13 @@
 // 	Max()
 //	Index(int)
 
+// Package collections is a library of types and methods that make manipulating slices a lot easier by 
+// providing some basic functionality
+//---------------------------------------------------------------------------------------------------- <-100
+package colletions
+
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
-
 // IntSlice is a slice on ints with common methods.
 type IntSlice []int
 

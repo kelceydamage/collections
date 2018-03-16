@@ -30,8 +30,6 @@
 
 //---------------------------------------------------------------------------------------------------- <-100
 
-// Package collections is a library of types and methods that make manipulating slices a lot easier by
-// providing some basic functionality
 package collections
 
 // Code

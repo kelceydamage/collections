@@ -1,4 +1,4 @@
-[![build status](https://secure.travis-ci.org/kelceydamage/collections.png)](http://travis-ci.org/kelceydamage/collections)
+[![Build Status](https://travis-ci.org/kelceydamage/collections.svg?branch=master)](https://travis-ci.org/kelceydamage/collections) 
 
 # collections
 import "github.com/kelceydamage/collections"

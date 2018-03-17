@@ -1,5 +1,5 @@
 # collections
-[![Build Status](https://travis-ci.org/kelceydamage/collections.svg?branch=master)](https://travis-ci.org/kelceydamage/collections) [![Go Report Card](https://goreportcard.com/badge/github.com/kelceydamage/collections)](https://goreportcard.com/report/github.com/kelceydamage/collections) [![GoDoc](https://godoc.org/github.com/kelceydamage/collections?status.svg)](https://godoc.org/github.com/kelceydamage/collections) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
+[![Build Status](https://travis-ci.org/kelceydamage/collections.svg?branch=master)](https://travis-ci.org/kelceydamage/collections) [![Go Report Card](https://goreportcard.com/badge/github.com/kelceydamage/collections)](https://goreportcard.com/report/github.com/kelceydamage/collections) [![CodeFactor](https://www.codefactor.io/repository/github/kelceydamage/collections/badge)](https://www.codefactor.io/repository/github/kelceydamage/collections) [![GoDoc](https://godoc.org/github.com/kelceydamage/collections?status.svg)](https://godoc.org/github.com/kelceydamage/collections) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
 
 import "github.com/kelceydamage/collections"
 

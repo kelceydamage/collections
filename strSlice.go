@@ -29,6 +29,7 @@
 //  Less(i, j)
 //  TruncateLft(int)
 //  TruncateRgt(int)
+//  Reverse()
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
 //-------------------------------------------------------------------------------------------------- <-100
@@ -114,5 +115,12 @@ func (s *StrSlice) TruncateLft(n int) {
 func (s *StrSlice) TruncateRgt(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
+	}
+}
+
+// Reverse will swap the order of ints in the slice.
+func (s *StrSlice) Reverse() {
+	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }

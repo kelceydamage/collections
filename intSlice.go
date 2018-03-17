@@ -36,6 +36,7 @@
 //  Less(i, j)
 //  TruncateLft(int)
 //  TruncateRgt(int)
+//  Reverse()
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -212,5 +213,12 @@ func (s *IntSlice) TruncateLft(n int) {
 func (s *IntSlice) TruncateRgt(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
+	}
+}
+
+// Reverse will swap the order of ints in the slice.
+func (s *IntSlice) Reverse() {
+	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }

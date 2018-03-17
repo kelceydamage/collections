@@ -26,8 +26,8 @@
 //  MinNonZero()
 //  Max()
 //  MaxNonZero()
-//  Index(int)
-//  IndexRgt(int)
+//  Index(float64)
+//  IndexRgt(float64)
 //  Sum()
 //  Variance()
 //  StdDev()
@@ -36,6 +36,7 @@
 //  Less(i, j)
 //  TruncateLft(int)
 //  TruncateRgt(int)
+//  Reverse()
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -212,5 +213,12 @@ func (s *FltSlice) TruncateLft(n int) {
 func (s *FltSlice) TruncateRgt(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
+	}
+}
+
+// Reverse will swap the order of float64s in the slice.
+func (s *FltSlice) Reverse() {
+	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }

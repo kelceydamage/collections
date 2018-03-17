@@ -47,7 +47,7 @@ func TestNegFltSliceAvg(t *testing.T) {
 	t.Log("Testing: negative values FltSlice for Avg")
 	n := negflts.Avg()
 	if n != -87.44527846153846 {
-		t.Error("MinNonZero() not expected value of -87.44527846153846: " + strconv.FormatFloat(n, 'f', -1, 64))
+		t.Error("Avg() not expected value of -87.44527846153846: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 
@@ -55,7 +55,23 @@ func TestNegFltSliceIndex(t *testing.T) {
 	t.Log("Testing: negative values FltSlice for Index")
 	n := negflts.Index(-34.54)
 	if n != 9 {
-		t.Error("MinNonZero() not expected value of 9: " + strconv.Itoa(n))
+		t.Error("Index() not expected value of 9: " + strconv.Itoa(n))
+	}
+}
+
+func TestNegFltSliceSum(t *testing.T) {
+	t.Log("Testing: positive values FltSlice for Sum")
+	n := negflts.Sum()
+	if n != -1136.78862 {
+		t.Error("Sum() not expected value of -1136.78862: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestNegFltSliceLen(t *testing.T) {
+	t.Log("Testing: positive values FltSlice for Len")
+	n := negflts.Len()
+	if n != 13 {
+		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
 	}
 }
 
@@ -98,7 +114,7 @@ func TestFltSliceAvg(t *testing.T) {
 	t.Log("Testing: positive values FltSlice for Avg")
 	n := flts.Avg()
 	if n != 87.44527846153846 {
-		t.Error("MinNonZero() not expected value of -87.44527846153846: " + strconv.FormatFloat(n, 'f', -1, 64))
+		t.Error("Avg() not expected value of -87.44527846153846: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 
@@ -106,6 +122,22 @@ func TestFltSliceIndex(t *testing.T) {
 	t.Log("Testing: positive values FltSlice for Index")
 	n := flts.Index(34.54)
 	if n != 9 {
-		t.Error("MinNonZero() not expected value of 9: " + strconv.Itoa(n))
+		t.Error("Index() not expected value of 9: " + strconv.Itoa(n))
+	}
+}
+
+func TestFltSliceSum(t *testing.T) {
+	t.Log("Testing: positive values FltSlice for Sum")
+	n := flts.Sum()
+	if n != 1136.78862 {
+		t.Error("Sum() not expected value of 1136.78862: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestFltSliceLen(t *testing.T) {
+	t.Log("Testing: positive values FltSlice for Len")
+	n := flts.Len()
+	if n != 13 {
+		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
 	}
 }

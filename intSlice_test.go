@@ -48,7 +48,7 @@ func TestNegIntSliceAvg(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for Avg")
 	n := negints.Avg()
 	if n != -87 {
-		t.Error("MinNonZero() not expected value of -87: " + strconv.Itoa(n))
+		t.Error("Avg() not expected value of -87: " + strconv.Itoa(n))
 	}
 }
 
@@ -56,7 +56,23 @@ func TestNegIntSliceIndex(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for Index")
 	n := negints.Index(-34)
 	if n != 7 {
-		t.Error("MinNonZero() not expected value of 7: " + strconv.Itoa(n))
+		t.Error("Index() not expected value of 7: " + strconv.Itoa(n))
+	}
+}
+
+func TestNegIntSliceSum(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Sum")
+	n := negints.Sum()
+	if n != -1132 {
+		t.Error("Sum() not expected value of -1132: " + strconv.Itoa(n))
+	}
+}
+
+func TestNegIntSliceLen(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Len")
+	n := negints.Len()
+	if n != 13 {
+		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
 	}
 }
 
@@ -99,7 +115,7 @@ func TestIntSliceAvg(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Avg")
 	n := ints.Avg()
 	if n != 87 {
-		t.Error("MinNonZero() not expected value of 87: " + strconv.Itoa(n))
+		t.Error("Avg() not expected value of 87: " + strconv.Itoa(n))
 	}
 }
 
@@ -107,6 +123,22 @@ func TestIntSliceIndex(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Index")
 	n := ints.Index(935)
 	if n != 6 {
-		t.Error("MinNonZero() not expected value of 7: " + strconv.Itoa(n))
+		t.Error("Index() not expected value of 7: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceSum(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Sum")
+	n := ints.Sum()
+	if n != 1132 {
+		t.Error("Sum() not expected value of 1132: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceLen(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Len")
+	n := ints.Len()
+	if n != 13 {
+		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
 	}
 }

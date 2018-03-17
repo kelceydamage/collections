@@ -27,9 +27,15 @@
 //  Max()
 //  MaxNonZero()
 //  Index(int)
+//  IndexRgt(int)
 //  Sum()
 //  Variance()
 //  StdDev()
+//  Sort(bool)
+//  Swap(i, j)
+//  Less(i, j)
+//  TruncateLft(int)
+//  TruncateRgt(int)
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -47,6 +53,7 @@ import (
 type IntSlice []int
 
 // Index retrives the first index [i] from the left, for the provided value [j] (int).
+// Returns -1 if index not found.
 func (s *IntSlice) Index(j int) int {
 	for i, v := range *s {
 		if v == j {
@@ -54,6 +61,21 @@ func (s *IntSlice) Index(j int) int {
 		}
 	}
 	return -1
+}
+
+// IndexRgt retrives the first index [i] from the right, for the provided value [j] (int).
+// Returns -1 if index not found.
+func (s *IntSlice) IndexRgt(j int) int {
+	k := -1
+	for i, v := range *s {
+		if v == j {
+			k = i
+		}
+	}
+	if k == -1 {
+		return k
+	}
+	return k
 }
 
 // Sum add all the values in the slice and returns the result.

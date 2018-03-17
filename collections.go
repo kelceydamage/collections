@@ -29,6 +29,7 @@ type Slice interface {
 	Sort(bool)
 	TruncateLft(int)
 	TruncateRgt(int)
+	Reverse()
 }
 
 // Queue interface allows a small amount of generic application to all collections Queues.

@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//  FltSlice
+//  StringSlice
 //
 // Struct Methods:
 //  len()
@@ -41,12 +41,12 @@ import "sort"
 // Code
 //-------------------------------------------------------------------------------------------------- <-100
 
-// BlnSlice is a slice off string with common methods.
-type BlnSlice []bool
+// StringSlice is a slice off string with common methods.
+type StringSlice []string
 
-// Index retrives the first index [i] from the left, for the provided value [j] (bool).
+// Index retrives the first index [i] from the left, for the provided value [j] (string).
 // Returns -1 if index not found.
-func (s *BlnSlice) Index(j bool) int {
+func (s *StringSlice) Index(j string) int {
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -55,9 +55,9 @@ func (s *BlnSlice) Index(j bool) int {
 	return -1
 }
 
-// IndexRgt retrives the first index [i] from the right, for the provided value [j] (bool).
+// IndexRgt retrives the first index [i] from the right, for the provided value [j] (string).
 // Returns -1 if index not found.
-func (s *BlnSlice) IndexRgt(j bool) int {
+func (s *StringSlice) IndexRgt(j string) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -71,7 +71,7 @@ func (s *BlnSlice) IndexRgt(j bool) int {
 }
 
 // Len returns the length of the slice
-func (s BlnSlice) Len() int {
+func (s StringSlice) Len() int {
 	return len(s)
 }
 
@@ -79,49 +79,49 @@ func (s BlnSlice) Len() int {
 // descending.
 //
 // Implements sort.Sort() method.
-func (s *BlnSlice) Sort(b bool) {
+func (s *StringSlice) Sort(b bool) {
 	if b {
-		sort.Sort(blnSliceAsc{*s})
+		sort.Sort(strSliceAsc{*s})
 	} else {
-		sort.Sort(blnSliceDsc{*s})
+		sort.Sort(strSliceDsc{*s})
 	}
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
-func (s BlnSlice) Swap(i, j int) {
+func (s StringSlice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
-type blnSliceDsc struct{ BlnSlice }
+type strSliceDsc struct{ StringSlice }
 
 // Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
-func (s blnSliceDsc) Less(i, j int) bool {
-	return s.BlnSlice[i] != s.BlnSlice[j]
+func (s strSliceDsc) Less(i, j int) bool {
+	return s.StringSlice[i] > s.StringSlice[j]
 }
 
-type blnSliceAsc struct{ BlnSlice }
+type strSliceAsc struct{ StringSlice }
 
 // Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
-func (s blnSliceAsc) Less(i, j int) bool {
-	return s.BlnSlice[i] == s.BlnSlice[j]
+func (s strSliceAsc) Less(i, j int) bool {
+	return s.StringSlice[i] < s.StringSlice[j]
 }
 
-// TruncateLft shrinks the slice to [n] amount of bools starting from the left.
-func (s *BlnSlice) TruncateLft(n int) {
+// TruncateLft shrinks the slice to [n] amount of float64s starting from the left.
+func (s *StringSlice) TruncateLft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
-// TruncateRgt shrinks the slice to [n] amount of bools starting from the right.
-func (s *BlnSlice) TruncateRgt(n int) {
+// TruncateRgt shrinks the slice to [n] amount of float64s starting from the right.
+func (s *StringSlice) TruncateRgt(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}
 }
 
-// Reverse will swap the order of bools in the slice.
-func (s *BlnSlice) Reverse() {
+// Reverse will swap the order of ints in the slice.
+func (s *StringSlice) Reverse() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

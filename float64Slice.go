@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//  FltSlice
+//  Float64Slice
 //
 // Struct Methods:
 //  Avg()
@@ -50,12 +50,12 @@ import (
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
-// FltSlice is a slice off float64 with common methods.
-type FltSlice []float64
+// Float64Slice is a slice off float64 with common methods.
+type Float64Slice []float64
 
 // Index retrives the first index [i] from the left, for the provided value [j] (int).
 // Returns -1 if index not found.
-func (s *FltSlice) Index(j float64) int {
+func (s *Float64Slice) Index(j float64) int {
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -66,7 +66,7 @@ func (s *FltSlice) Index(j float64) int {
 
 // IndexRgt retrives the first index [i] from the right, for the provided value [j] (float64).
 // Returns -1 if index not found.
-func (s *FltSlice) IndexRgt(j float64) int {
+func (s *Float64Slice) IndexRgt(j float64) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -80,7 +80,7 @@ func (s *FltSlice) IndexRgt(j float64) int {
 }
 
 // Sum add all the values in the slice and returns the result.
-func (s *FltSlice) Sum() float64 {
+func (s *Float64Slice) Sum() float64 {
 	n := 0.0
 	for _, v := range *s {
 		n += v
@@ -89,17 +89,17 @@ func (s *FltSlice) Sum() float64 {
 }
 
 // Len returns the length of the slice
-func (s FltSlice) Len() int {
+func (s Float64Slice) Len() int {
 	return len(s)
 }
 
 // Avg returns the average of all values in the slice.
-func (s *FltSlice) Avg() float64 {
+func (s *Float64Slice) Avg() float64 {
 	return s.Sum() / float64(s.Len())
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
-func (s *FltSlice) Min() (float64, int) {
+func (s *Float64Slice) Min() (float64, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -112,7 +112,7 @@ func (s *FltSlice) Min() (float64, int) {
 }
 
 // MinNonZero returns the smallest non-zero value [n] in the slice along with its index [k].
-func (s *FltSlice) MinNonZero() (float64, int) {
+func (s *Float64Slice) MinNonZero() (float64, int) {
 	n, _ := s.Max()
 	k := 0
 	for i, v := range *s {
@@ -127,7 +127,7 @@ func (s *FltSlice) MinNonZero() (float64, int) {
 }
 
 // Max returns the largest value [n] in the slice along with its index [k].
-func (s *FltSlice) Max() (float64, int) {
+func (s *Float64Slice) Max() (float64, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -141,7 +141,7 @@ func (s *FltSlice) Max() (float64, int) {
 
 // MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
 // Intended for use with negative integers.
-func (s *FltSlice) MaxNonZero() (float64, int) {
+func (s *Float64Slice) MaxNonZero() (float64, int) {
 	n, _ := s.Min()
 	k := 0
 	for i, v := range *s {
@@ -156,7 +156,7 @@ func (s *FltSlice) MaxNonZero() (float64, int) {
 }
 
 // Variance returns the variance of the integers in the slice. Expressed as a float64.
-func (s *FltSlice) Variance() float64 {
+func (s *Float64Slice) Variance() float64 {
 	n := 0.0
 	mapR := func(n float64) float64 {
 		for _, v := range *s {
@@ -169,7 +169,7 @@ func (s *FltSlice) Variance() float64 {
 }
 
 // StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
-func (s *FltSlice) StdDev() float64 {
+func (s *Float64Slice) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
 }
 
@@ -177,7 +177,7 @@ func (s *FltSlice) StdDev() float64 {
 // descending
 //
 // Implements sort.Sort() method.
-func (s *FltSlice) Sort(b bool) {
+func (s *Float64Slice) Sort(b bool) {
 	if b {
 		sort.Sort(fltSliceAsc{*s})
 	} else {
@@ -186,40 +186,40 @@ func (s *FltSlice) Sort(b bool) {
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
-func (s FltSlice) Swap(i, j int) {
+func (s Float64Slice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
-type fltSliceDsc struct{ FltSlice }
+type fltSliceDsc struct{ Float64Slice }
 
 // Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
 func (s fltSliceDsc) Less(i, j int) bool {
-	return s.FltSlice[i] > s.FltSlice[j]
+	return s.Float64Slice[i] > s.Float64Slice[j]
 }
 
-type fltSliceAsc struct{ FltSlice }
+type fltSliceAsc struct{ Float64Slice }
 
 // Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
 func (s fltSliceAsc) Less(i, j int) bool {
-	return s.FltSlice[i] < s.FltSlice[j]
+	return s.Float64Slice[i] < s.Float64Slice[j]
 }
 
 // TruncateLft shrinks the slice to [n] amount of float64s starting from the left.
-func (s *FltSlice) TruncateLft(n int) {
+func (s *Float64Slice) TruncateLft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
 // TruncateRgt shrinks the slice to [n] amount of float64s starting from the right.
-func (s *FltSlice) TruncateRgt(n int) {
+func (s *Float64Slice) TruncateRgt(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}
 }
 
 // Reverse will swap the order of float64s in the slice.
-func (s *FltSlice) Reverse() {
+func (s *Float64Slice) Reverse() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

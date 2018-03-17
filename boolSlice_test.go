@@ -17,11 +17,29 @@ func TestBoolSliceIndex(t *testing.T) {
 	}
 }
 
+func TestBoolSliceIndexFail(t *testing.T) {
+	target := BoolSlice{false, false, false}
+	t.Log("Testing: BoolSlice for index failure")
+	n := target.Index(true)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
 func TestBoolSliceIndexRight(t *testing.T) {
 	t.Log("Testing: BoolSlice for index")
 	n := bools.IndexRight(false)
 	if n != 6 {
 		t.Error("IndexRight() not expected value of 6: " + strconv.Itoa(n))
+	}
+}
+
+func TestBoolSliceIndexRightFail(t *testing.T) {
+	target := BoolSlice{false, false, false}
+	t.Log("Testing: BoolSlice for index failure")
+	n := target.IndexRight(true)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
 }
 

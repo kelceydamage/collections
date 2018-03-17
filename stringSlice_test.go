@@ -17,11 +17,27 @@ func TestStringSliceIndex(t *testing.T) {
 	}
 }
 
+func TestStringSliceIndexFail(t *testing.T) {
+	t.Log("Testing: StringSlice for index failure")
+	n := strs.Index("fred")
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
 func TestStringSliceIndexRight(t *testing.T) {
 	t.Log("Testing: StringSlice for index")
 	n := strs.IndexRight("you")
 	if n != 3 {
 		t.Error("IndexRight() not expected value of 3: " + strconv.Itoa(n))
+	}
+}
+
+func TestStringSliceIndexRightFail(t *testing.T) {
+	t.Log("Testing: StringSlice for index failure")
+	n := strs.IndexRight("fred")
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}
 }
 

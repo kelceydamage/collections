@@ -190,16 +190,21 @@ func (s IntSlice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
+// Less returns true if value at index [i] is less then value at index [j].
+func (s IntSlice) Less(i, j int) bool {
+	return s[i] < s[j]
+}
+
 type intSliceDsc struct{ IntSlice }
 
-// Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is greater then value at index [j].
 func (s intSliceDsc) Less(i, j int) bool {
 	return s.IntSlice[i] > s.IntSlice[j]
 }
 
 type intSliceAsc struct{ IntSlice }
 
-// Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is less then value at index [j].
 func (s intSliceAsc) Less(i, j int) bool {
 	return s.IntSlice[i] < s.IntSlice[j]
 }

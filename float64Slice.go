@@ -190,16 +190,21 @@ func (s Float64Slice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
+// Less returns true if value at index [i] is less then value at index [j].
+func (s Float64Slice) Less(i, j int) bool {
+	return s[i] < s[j]
+}
+
 type fltSliceDsc struct{ Float64Slice }
 
-// Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is greater then value at index [j].
 func (s fltSliceDsc) Less(i, j int) bool {
 	return s.Float64Slice[i] > s.Float64Slice[j]
 }
 
 type fltSliceAsc struct{ Float64Slice }
 
-// Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is less then value at index [j].
 func (s fltSliceAsc) Less(i, j int) bool {
 	return s.Float64Slice[i] < s.Float64Slice[j]
 }

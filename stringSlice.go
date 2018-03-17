@@ -92,16 +92,21 @@ func (s StringSlice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
+// Less returns true if value at index [i] is less then value at index [j].
+func (s StringSlice) Less(i, j int) bool {
+	return s[i] < s[j]
+}
+
 type strSliceDsc struct{ StringSlice }
 
-// Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is greater then value at index [j].
 func (s strSliceDsc) Less(i, j int) bool {
 	return s.StringSlice[i] > s.StringSlice[j]
 }
 
 type strSliceAsc struct{ StringSlice }
 
-// Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
+// Less implementation for sort. Return true if value at index [i] is less then value at index [j].
 func (s strSliceAsc) Less(i, j int) bool {
 	return s.StringSlice[i] < s.StringSlice[j]
 }

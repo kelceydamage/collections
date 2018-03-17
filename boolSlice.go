@@ -75,15 +75,15 @@ func (s BoolSlice) Len() int {
 	return len(s)
 }
 
-// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending.
+// Sort inplace sorts the slice. Passing [true] will sort with true booleans first, while passing [false] will sort
+// the opposite.
 //
 // Implements sort.Sort() method.
 func (s *BoolSlice) Sort(b bool) {
 	if b {
-		sort.Sort(blnSliceAsc{*s})
+		sort.Sort(s)
 	} else {
-		sort.Sort(blnSliceDsc{*s})
+		s.Reverse()
 	}
 }
 
@@ -92,23 +92,10 @@ func (s BoolSlice) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
-// Less returns true if value at index [i] is equal then value at index [j].
+// Less implementation for sort. Return true if value at index [i] not equal to [j]. This will sort
+// the slice so that all true booleans appear before false booleans.
 func (s BoolSlice) Less(i, j int) bool {
-	return s[i] == s[j]
-}
-
-type blnSliceDsc struct{ BoolSlice }
-
-// Less implementation for sort. Return true if value at index [i] is greater then value at index [j].
-func (s blnSliceDsc) Less(i, j int) bool {
-	return s.BoolSlice[i] != s.BoolSlice[j]
-}
-
-type blnSliceAsc struct{ BoolSlice }
-
-// Less implementation for sort. Return true if value at index [i] is less then value at index [j].
-func (s blnSliceAsc) Less(i, j int) bool {
-	return s.BoolSlice[i] == s.BoolSlice[j]
+	return s[i] != s[j]
 }
 
 // TruncateLeft shrinks the slice to [n] amount of bools starting from the left.

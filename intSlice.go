@@ -48,22 +48,32 @@ func (s *IntSlice) Index(j int) int {
 	return -1
 }
 
+// Sum add all the values in the slice and returns the result.
+func (s *IntSlice) Sum() int {
+	n := 0
+	for _, v := range *s {
+		n += v
+	}
+	return n
+}
+
+// Len returns the length of the slice
+func (s *IntSlice) Len() int {
+	return len((*s))
+}
+
 // Avg returns the average of all values in the slice.
 func (s *IntSlice) Avg() int {
-	n := 0
-	for i := range *s {
-		n += (*s)[i]
-	}
-	return n / len((*s))
+	return s.Sum() / s.Len()
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
 func (s *IntSlice) Min() (int, int) {
 	n := (*s)[0]
 	k := 0
-	for i := range *s {
-		if (*s)[i] < n {
-			n = (*s)[i]
+	for i, v := range *s {
+		if v < n {
+			n = v
 			k = i
 		}
 	}
@@ -74,10 +84,10 @@ func (s *IntSlice) Min() (int, int) {
 func (s *IntSlice) MinNonZero() (int, int) {
 	n, _ := s.Max()
 	k := 0
-	for i := range *s {
-		if (*s)[i] != 0 {
-			if (*s)[i] < n {
-				n = (*s)[i]
+	for i, v := range *s {
+		if v != 0 {
+			if v < n {
+				n = v
 				k = i
 			}
 		}
@@ -89,9 +99,9 @@ func (s *IntSlice) MinNonZero() (int, int) {
 func (s *IntSlice) Max() (int, int) {
 	n := (*s)[0]
 	k := 0
-	for i := range *s {
-		if (*s)[i] > n {
-			n = (*s)[i]
+	for i, v := range *s {
+		if v > n {
+			n = v
 			k = i
 		}
 	}
@@ -103,10 +113,10 @@ func (s *IntSlice) Max() (int, int) {
 func (s *IntSlice) MaxNonZero() (int, int) {
 	n, _ := s.Min()
 	k := 0
-	for i := range *s {
-		if (*s)[i] != 0 {
-			if (*s)[i] > n {
-				n = (*s)[i]
+	for i, v := range *s {
+		if v != 0 {
+			if v > n {
+				n = v
 				k = i
 			}
 		}

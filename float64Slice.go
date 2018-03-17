@@ -27,15 +27,15 @@
 //  Max()
 //  MaxNonZero()
 //  Index(float64)
-//  IndexRgt(float64)
+//  IndexRight(float64)
 //  Sum()
 //  Variance()
 //  StdDev()
 //  Sort(bool)
 //  Swap(i, j)
 //  Less(i, j)
-//  TruncateLft(int)
-//  TruncateRgt(int)
+//  TruncateLeft(int)
+//  TruncateRight(int)
 //  Reverse()
 
 //---------------------------------------------------------------------------------------------------- <-100
@@ -64,9 +64,9 @@ func (s *Float64Slice) Index(j float64) int {
 	return -1
 }
 
-// IndexRgt retrives the first index [i] from the right, for the provided value [j] (float64).
+// IndexRight retrives the first index [i] from the right, for the provided value [j] (float64).
 // Returns -1 if index not found.
-func (s *Float64Slice) IndexRgt(j float64) int {
+func (s *Float64Slice) IndexRight(j float64) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -204,15 +204,15 @@ func (s fltSliceAsc) Less(i, j int) bool {
 	return s.Float64Slice[i] < s.Float64Slice[j]
 }
 
-// TruncateLft shrinks the slice to [n] amount of float64s starting from the left.
-func (s *Float64Slice) TruncateLft(n int) {
+// TruncateLeft shrinks the slice to [n] amount of float64s starting from the left.
+func (s *Float64Slice) TruncateLeft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
-// TruncateRgt shrinks the slice to [n] amount of float64s starting from the right.
-func (s *Float64Slice) TruncateRgt(n int) {
+// TruncateRight shrinks the slice to [n] amount of float64s starting from the right.
+func (s *Float64Slice) TruncateRight(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}

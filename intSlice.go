@@ -18,7 +18,7 @@
 //---------------------------------------------------------------------------------------------------- <-100
 
 // Struct Type:
-//  FltSlice
+//  IntSlice
 //
 // Struct Methods:
 //  Avg()
@@ -27,15 +27,15 @@
 //  Max()
 //  MaxNonZero()
 //  Index(int)
-//  IndexRgt(int)
+//  IndexRight(int)
 //  Sum()
 //  Variance()
 //  StdDev()
 //  Sort(bool)
 //  Swap(i, j)
 //  Less(i, j)
-//  TruncateLft(int)
-//  TruncateRgt(int)
+//  TruncateLeft(int)
+//  TruncateRight(int)
 //  Reverse()
 
 //---------------------------------------------------------------------------------------------------- <-100
@@ -64,9 +64,9 @@ func (s *IntSlice) Index(j int) int {
 	return -1
 }
 
-// IndexRgt retrives the first index [i] from the right, for the provided value [j] (int).
+// IndexRight retrives the first index [i] from the right, for the provided value [j] (int).
 // Returns -1 if index not found.
-func (s *IntSlice) IndexRgt(j int) int {
+func (s *IntSlice) IndexRight(j int) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -204,15 +204,15 @@ func (s intSliceAsc) Less(i, j int) bool {
 	return s.IntSlice[i] < s.IntSlice[j]
 }
 
-// TruncateLft shrinks the slice to [n] amount of ints starting from the left.
-func (s *IntSlice) TruncateLft(n int) {
+// TruncateLeft shrinks the slice to [n] amount of ints starting from the left.
+func (s *IntSlice) TruncateLeft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
-// TruncateRgt shrinks the slice to [n] amount of ints starting from the right.
-func (s *IntSlice) TruncateRgt(n int) {
+// TruncateRight shrinks the slice to [n] amount of ints starting from the right.
+func (s *IntSlice) TruncateRight(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}

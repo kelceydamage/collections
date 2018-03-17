@@ -23,12 +23,12 @@
 // Struct Methods:
 //  len()
 //  Index(string)
-//  IndexRgt(string)
+//  IndexRight(string)
 //  Sort(bool)
 //  Swap(i, j)
 //  Less(i, j)
-//  TruncateLft(int)
-//  TruncateRgt(int)
+//  TruncateLeft(int)
+//  TruncateRight(int)
 //  Reverse()
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
@@ -55,9 +55,9 @@ func (s *BoolSlice) Index(j bool) int {
 	return -1
 }
 
-// IndexRgt retrives the first index [i] from the right, for the provided value [j] (bool).
+// IndexRight retrives the first index [i] from the right, for the provided value [j] (bool).
 // Returns -1 if index not found.
-func (s *BoolSlice) IndexRgt(j bool) int {
+func (s *BoolSlice) IndexRight(j bool) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -106,15 +106,15 @@ func (s blnSliceAsc) Less(i, j int) bool {
 	return s.BoolSlice[i] == s.BoolSlice[j]
 }
 
-// TruncateLft shrinks the slice to [n] amount of bools starting from the left.
-func (s *BoolSlice) TruncateLft(n int) {
+// TruncateLeft shrinks the slice to [n] amount of bools starting from the left.
+func (s *BoolSlice) TruncateLeft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
-// TruncateRgt shrinks the slice to [n] amount of bools starting from the right.
-func (s *BoolSlice) TruncateRgt(n int) {
+// TruncateRight shrinks the slice to [n] amount of bools starting from the right.
+func (s *BoolSlice) TruncateRight(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}

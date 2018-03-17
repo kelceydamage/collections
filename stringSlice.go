@@ -23,12 +23,12 @@
 // Struct Methods:
 //  len()
 //  Index(string)
-//  IndexRgt(string)
+//  IndexRight(string)
 //  Sort(bool)
 //  Swap(i, j)
 //  Less(i, j)
-//  TruncateLft(int)
-//  TruncateRgt(int)
+//  TruncateLeft(int)
+//  TruncateRight(int)
 //  Reverse()
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
@@ -55,9 +55,9 @@ func (s *StringSlice) Index(j string) int {
 	return -1
 }
 
-// IndexRgt retrives the first index [i] from the right, for the provided value [j] (string).
+// IndexRight retrives the first index [i] from the right, for the provided value [j] (string).
 // Returns -1 if index not found.
-func (s *StringSlice) IndexRgt(j string) int {
+func (s *StringSlice) IndexRight(j string) int {
 	k := -1
 	for i, v := range *s {
 		if v == j {
@@ -106,15 +106,15 @@ func (s strSliceAsc) Less(i, j int) bool {
 	return s.StringSlice[i] < s.StringSlice[j]
 }
 
-// TruncateLft shrinks the slice to [n] amount of float64s starting from the left.
-func (s *StringSlice) TruncateLft(n int) {
+// TruncateLeft shrinks the slice to [n] amount of float64s starting from the left.
+func (s *StringSlice) TruncateLeft(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[:n]
 	}
 }
 
-// TruncateRgt shrinks the slice to [n] amount of float64s starting from the right.
-func (s *StringSlice) TruncateRgt(n int) {
+// TruncateRight shrinks the slice to [n] amount of float64s starting from the right.
+func (s *StringSlice) TruncateRight(n int) {
 	if n != -1 && n <= len((*s)) {
 		(*s) = (*s)[(*s).Len()-n:]
 	}

@@ -19,7 +19,11 @@
 // This file is to pretty up the godoc.
 
 // Package collections is a library of types and methods that make manipulating slices a lot easier by
-// providing some basic functionality
+// providing some basic functionality.
+//
+// Collections is compatible with the built in Sort types, and should be familiar to use. As an example:
+// you can use a collections.IntSlice as a direct replacement for sort.IntSlice, while using oll the
+// features of Sort. This goes for all types included in Sort..
 package collections
 
 // Slice interface allows a small amount of generic application to all collections slices.

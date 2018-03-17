@@ -47,8 +47,8 @@ func TestNegIntSliceMinNonZero(t *testing.T) {
 func TestNegIntSliceAvg(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for Avg")
 	n := negints.Avg()
-	if n != -87 {
-		t.Error("Avg() not expected value of -87: " + strconv.Itoa(n))
+	if n != -87.07692307692308 {
+		t.Error("Avg() not expected value of -87.07692307692308: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 
@@ -114,8 +114,8 @@ func TestIntSliceMinNonZero(t *testing.T) {
 func TestIntSliceAvg(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Avg")
 	n := ints.Avg()
-	if n != 87 {
-		t.Error("Avg() not expected value of 87: " + strconv.Itoa(n))
+	if n != 87.07692307692308 {
+		t.Error("Avg() not expected value of 87.07692307692308: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 

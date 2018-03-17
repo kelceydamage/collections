@@ -32,6 +32,8 @@
 
 package collections
 
+import "math"
+
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -122,4 +124,22 @@ func (s *FltSlice) MaxNonZero() (float64, int) {
 		}
 	}
 	return n, k
+}
+
+// Variance returns the variance of the integers in the slice. Expressed as a float64.
+func (s *FltSlice) Variance() float64 {
+	n := 0.0
+	mapR := func(n float64) float64 {
+		for _, v := range *s {
+			n += math.Pow(v-(*s).Avg(), 2.0)
+		}
+		return n
+	}
+	variance := mapR(n) / float64((*s).Len())
+	return variance
+}
+
+// StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
+func (s *FltSlice) StdDev() float64 {
+	return math.Sqrt((*s).Variance())
 }

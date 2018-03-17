@@ -32,6 +32,8 @@
 
 package collections
 
+import "math"
+
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -62,9 +64,9 @@ func (s *IntSlice) Len() int {
 	return len((*s))
 }
 
-// Avg returns the average of all values in the slice.
-func (s *IntSlice) Avg() int {
-	return s.Sum() / s.Len()
+// Avg returns the average of all values in the slice. Expressed as a float64
+func (s *IntSlice) Avg() float64 {
+	return float64(s.Sum()) / float64(s.Len())
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
@@ -122,4 +124,22 @@ func (s *IntSlice) MaxNonZero() (int, int) {
 		}
 	}
 	return n, k
+}
+
+// Variance returns the variance of the integers in the slice. Expressed as a float64.
+func (s *IntSlice) Variance() float64 {
+	n := 0.0
+	mapR := func(n float64) float64 {
+		for _, v := range *s {
+			n += math.Pow(float64(v)-(*s).Avg(), 2.0)
+		}
+		return n
+	}
+	variance := mapR(n) / float64((*s).Len())
+	return variance
+}
+
+// StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
+func (s *IntSlice) StdDev() float64 {
+	return math.Sqrt((*s).Variance())
 }

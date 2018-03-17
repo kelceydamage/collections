@@ -76,7 +76,9 @@ func (s BlnSlice) Len() int {
 }
 
 // Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending
+// descending.
+//
+// Implements sort.Sort() method.
 func (s *BlnSlice) Sort(b bool) {
 	if b {
 		sort.Sort(blnSliceAsc{*s})

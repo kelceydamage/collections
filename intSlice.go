@@ -174,7 +174,9 @@ func (s *IntSlice) StdDev() float64 {
 }
 
 // Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending
+// descending.
+//
+// Implements sort.Sort() method.
 func (s *IntSlice) Sort(b bool) {
 	if b {
 		sort.Sort(intSliceAsc{*s})

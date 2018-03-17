@@ -21,3 +21,16 @@
 // Package collections is a library of types and methods that make manipulating slices a lot easier by
 // providing some basic functionality
 package collections
+
+// Slice interface allows a small amount of generic application to all collections slices.
+type Slice interface {
+	Len() int
+	Swap(int int)
+	Sort(bool)
+	TruncateLft(int)
+	TruncateRgt(int)
+}
+
+// Queue interface allows a small amount of generic application to all collections Queues.
+type Queue interface {
+}

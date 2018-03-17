@@ -27,12 +27,18 @@
 //  Max()
 //  MaxNonZero()
 //  Index(int)
+//  Sum()
+//  Variance()
+//  StdDev()
 
 //---------------------------------------------------------------------------------------------------- <-100
 
 package collections
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
@@ -60,8 +66,8 @@ func (s *IntSlice) Sum() int {
 }
 
 // Len returns the length of the slice
-func (s *IntSlice) Len() int {
-	return len((*s))
+func (s IntSlice) Len() int {
+	return len(s)
 }
 
 // Avg returns the average of all values in the slice. Expressed as a float64
@@ -142,4 +148,47 @@ func (s *IntSlice) Variance() float64 {
 // StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
 func (s *IntSlice) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
+}
+
+// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
+// descending
+func (s *IntSlice) Sort(b bool) {
+	if b {
+		sort.Sort(intSliceAsc{*s})
+	} else {
+		sort.Sort(intSliceDsc{*s})
+	}
+}
+
+// Swap implementation for general sort. This will swap the position of 2 items in the slice.
+func (s IntSlice) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
+type intSliceDsc struct{ IntSlice }
+
+// Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
+func (s intSliceDsc) Less(i, j int) bool {
+	return s.IntSlice[i] > s.IntSlice[j]
+}
+
+type intSliceAsc struct{ IntSlice }
+
+// Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
+func (s intSliceAsc) Less(i, j int) bool {
+	return s.IntSlice[i] < s.IntSlice[j]
+}
+
+// TruncateLft shrinks the slice to [n] amount of ints starting from the left.
+func (s *IntSlice) TruncateLft(n int) {
+	if n != -1 && n <= len((*s)) {
+		(*s) = (*s)[:n]
+	}
+}
+
+// TruncateRgt shrinks the slice to [n] amount of ints starting from the right.
+func (s *IntSlice) TruncateRgt(n int) {
+	if n != -1 && n <= len((*s)) {
+		(*s) = (*s)[(*s).Len()-n:]
+	}
 }

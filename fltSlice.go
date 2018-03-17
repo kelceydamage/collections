@@ -27,6 +27,7 @@
 //  Max()
 //  MaxNonZero()
 //  Index(int)
+//  Sum()
 //  Variance()
 //  StdDev()
 
@@ -34,7 +35,10 @@
 
 package collections
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
@@ -62,8 +66,8 @@ func (s *FltSlice) Sum() float64 {
 }
 
 // Len returns the length of the slice
-func (s *FltSlice) Len() int {
-	return len((*s))
+func (s FltSlice) Len() int {
+	return len(s)
 }
 
 // Avg returns the average of all values in the slice.
@@ -144,4 +148,47 @@ func (s *FltSlice) Variance() float64 {
 // StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
 func (s *FltSlice) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
+}
+
+// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
+// descending
+func (s *FltSlice) Sort(b bool) {
+	if b {
+		sort.Sort(fltSliceAsc{*s})
+	} else {
+		sort.Sort(fltSliceDsc{*s})
+	}
+}
+
+// Swap implementation for general sort. This will swap the position of 2 items in the slice.
+func (s FltSlice) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
+type fltSliceDsc struct{ FltSlice }
+
+// Less implementation for sort. Returnd true if value at index [i] is greater then value at index [j].
+func (s fltSliceDsc) Less(i, j int) bool {
+	return s.FltSlice[i] > s.FltSlice[j]
+}
+
+type fltSliceAsc struct{ FltSlice }
+
+// Less implementation for sort. Returnd true if value at index [i] is less then value at index [j].
+func (s fltSliceAsc) Less(i, j int) bool {
+	return s.FltSlice[i] < s.FltSlice[j]
+}
+
+// TruncateLft shrinks the slice to [n] amount of float64s starting from the left.
+func (s *FltSlice) TruncateLft(n int) {
+	if n != -1 && n <= len((*s)) {
+		(*s) = (*s)[:n]
+	}
+}
+
+// TruncateRgt shrinks the slice to [n] amount of float64s starting from the right.
+func (s *FltSlice) TruncateRgt(n int) {
+	if n != -1 && n <= len((*s)) {
+		(*s) = (*s)[(*s).Len()-n:]
+	}
 }

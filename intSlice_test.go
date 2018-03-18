@@ -154,46 +154,46 @@ func TestIntSliceIndexRightFail(t *testing.T) {
 	}
 }
 
-/*
-func TestStringSliceSortTrue(t *testing.T) {
-	t.Log("Testing: StringSlice for Sort ascending")
-	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
-	strs.Sort(true)
-	t.Log("Strings: ", strs)
+func TestIntSliceSortTrue(t *testing.T) {
+	t.Log("Testing: IntSlice for Sort ascending")
+	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
+	ints.Sort(true)
+	t.Log("Ints: ", ints)
 	t.Log("Target: ", sorted)
-	for i := range strs {
-		if strs[i] != sorted[i] {
+	for i := range ints {
+		if ints[i] != sorted[i] {
 			t.Error("Sort() order not as expected, ascending")
 		}
 	}
 }
 
-func TestStringSliceSortFalse(t *testing.T) {
-	t.Log("Testing: StringSlice for Sort descending")
-	sorted := StringSlice{"you", "world", "kitty", "how", "hi", "hello", "cat", "are"}
-	strs.Sort(false)
-	t.Log("Strings: ", strs)
+func TestIntSliceSortFalse(t *testing.T) {
+	t.Log("Testing: IntSlice for Sort descending")
+	sorted := IntSlice{935, 96, 34, 34, 8, 6, 5, 5, 4, 2, 2, 1, 0}
+	ints.Sort(false)
+	t.Log("Ints: ", ints)
 	t.Log("Target: ", sorted)
-	for i := range bools {
-		if strs[i] != sorted[i] {
+	for i := range ints {
+		if ints[i] != sorted[i] {
 			t.Error("Sort() order not as expected, descending")
 		}
 	}
 }
 
-func TestStringSliceReverse(t *testing.T) {
-	t.Log("Testing: StringSlice for Reverse")
-	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
-	strs.Reverse()
-	t.Log("Strings: ", strs)
+func TestIntSliceReverse(t *testing.T) {
+	t.Log("Testing: IntSlice for Reverse")
+	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
+	ints.Reverse()
+	t.Log("Ints: ", ints)
 	t.Log("Target: ", sorted)
-	for i := range bools {
-		if strs[i] != sorted[i] {
+	for i := range ints {
+		if ints[i] != sorted[i] {
 			t.Error("Reverse() element positions do not match expected positions")
 		}
 	}
 }
 
+/*
 func TestStringSliceTruncateLeft(t *testing.T) {
 	t.Log("Testing: StringSlice for TruncateLeft")
 	target := StringSlice{"are", "cat", "hello", "hi", "how", "kitty"}

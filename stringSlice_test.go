@@ -68,7 +68,7 @@ func TestStringSliceSortFalse(t *testing.T) {
 	strs.Sort(false)
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
-	for i := range bools {
+	for i := range strs {
 		if strs[i] != sorted[i] {
 			t.Error("Sort() order not as expected, descending")
 		}
@@ -81,7 +81,7 @@ func TestStringSliceReverse(t *testing.T) {
 	strs.Reverse()
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
-	for i := range bools {
+	for i := range strs {
 		if strs[i] != sorted[i] {
 			t.Error("Reverse() element positions do not match expected positions")
 		}

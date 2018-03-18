@@ -14,7 +14,6 @@ before_script:
 script:
   - $GOPATH/bin/goveralls -service=travis-ci 
   - bundle exec rspec
-  - go test -coverprofile c.out ./...
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 

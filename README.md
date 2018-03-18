@@ -20,5 +20,11 @@ Is the same as:
 sort.Sort(sort.Reverse(collections.IntSlice(s)))
 ```
 
+However this is also the same as:
+
+```
+collections.IntSlice.Reverse()
+```
+
 # Documentation
 https://godoc.org/github.com/kelceydamage/collections

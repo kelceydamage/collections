@@ -24,12 +24,13 @@
 //  len()
 //  Index(string)
 //  IndexRight(string)
-//  Sort(bool)
+//  Sort()
 //  Swap(i, j)
 //  Less(i, j)
 //  TruncateLeft(int)
 //  TruncateRight(int)
 //  Reverse()
+//  Mirror()
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
 //-------------------------------------------------------------------------------------------------- <-100

@@ -31,12 +31,13 @@
 //  Sum()
 //  Variance()
 //  StdDev()
-//  Sort(bool)
+//  Sort()
 //  Swap(i, j)
 //  Less(i, j)
 //  TruncateLeft(int)
 //  TruncateRight(int)
 //  Reverse()
+//  Mirror()
 
 //---------------------------------------------------------------------------------------------------- <-100
 

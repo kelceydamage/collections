@@ -36,10 +36,10 @@ func TestBoolSliceIndexRight(t *testing.T) {
 
 func TestBoolSliceIndexRightFail(t *testing.T) {
 	target := BoolSlice{false, false, false}
-	t.Log("Testing: BoolSlice for index failure")
+	t.Log("Testing: BoolSlice for IndexRight failure")
 	n := target.IndexRight(true)
 	if n != -1 {
-		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}
 }
 

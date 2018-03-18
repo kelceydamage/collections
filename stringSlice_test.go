@@ -26,7 +26,7 @@ func TestStringSliceIndexFail(t *testing.T) {
 }
 
 func TestStringSliceIndexRight(t *testing.T) {
-	t.Log("Testing: StringSlice for index")
+	t.Log("Testing: StringSlice for IndexRight")
 	n := strs.IndexRight("you")
 	if n != 3 {
 		t.Error("IndexRight() not expected value of 3: " + strconv.Itoa(n))
@@ -34,7 +34,7 @@ func TestStringSliceIndexRight(t *testing.T) {
 }
 
 func TestStringSliceIndexRightFail(t *testing.T) {
-	t.Log("Testing: StringSlice for index failure")
+	t.Log("Testing: StringSlice for IndexRight failure")
 	n := strs.IndexRight("fred")
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
@@ -68,7 +68,7 @@ func TestStringSliceSortFalse(t *testing.T) {
 	strs.Sort(false)
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
-	for i := range bools {
+	for i := range strs {
 		if strs[i] != sorted[i] {
 			t.Error("Sort() order not as expected, descending")
 		}
@@ -81,7 +81,7 @@ func TestStringSliceReverse(t *testing.T) {
 	strs.Reverse()
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
-	for i := range bools {
+	for i := range strs {
 		if strs[i] != sorted[i] {
 			t.Error("Reverse() element positions do not match expected positions")
 		}

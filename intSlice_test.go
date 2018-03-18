@@ -52,14 +52,6 @@ func TestNegIntSliceAvg(t *testing.T) {
 	}
 }
 
-func TestNegIntSliceIndex(t *testing.T) {
-	t.Log("Testing: negative values IntSlice for Index")
-	n := negints.Index(-34)
-	if n != 7 {
-		t.Error("Index() not expected value of 7: " + strconv.Itoa(n))
-	}
-}
-
 func TestNegIntSliceSum(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Sum")
 	n := negints.Sum()
@@ -68,11 +60,19 @@ func TestNegIntSliceSum(t *testing.T) {
 	}
 }
 
-func TestNegIntSliceLen(t *testing.T) {
-	t.Log("Testing: positive values IntSlice for Len")
-	n := negints.Len()
-	if n != 13 {
-		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
+func TestNegIntSliceVariance(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Variance")
+	n := negints.Variance()
+	if n != 60565.91715976331 {
+		t.Error("Variance() not expected value of 60565.91715976331: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestNegIntSliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for StdDev")
+	n := negints.StdDev()
+	if n != 246.10143672836068 {
+		t.Error("StdDev() not expected value of 246.10143672836068: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 
@@ -119,14 +119,6 @@ func TestIntSliceAvg(t *testing.T) {
 	}
 }
 
-func TestIntSliceIndex(t *testing.T) {
-	t.Log("Testing: positive values IntSlice for Index")
-	n := ints.Index(935)
-	if n != 6 {
-		t.Error("Index() not expected value of 7: " + strconv.Itoa(n))
-	}
-}
-
 func TestIntSliceSum(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Sum")
 	n := ints.Sum()
@@ -135,10 +127,147 @@ func TestIntSliceSum(t *testing.T) {
 	}
 }
 
+func TestIntSliceVariance(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Variance")
+	n := ints.Variance()
+	if n != 60565.91715976331 {
+		t.Error("Variance() not expected value of 60565.91715976331: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestIntSliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for StdDev")
+	n := ints.StdDev()
+	if n != 246.10143672836068 {
+		t.Error("StdDev() not expected value of 246.10143672836068: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+// IntSlice non value sensitive tests
+//---------------------------------------------------------------------------------------------------- <-100
+
 func TestIntSliceLen(t *testing.T) {
-	t.Log("Testing: positive values IntSlice for Len")
+	t.Log("Testing: Values IntSlice for Len")
 	n := ints.Len()
 	if n != 13 {
 		t.Error("Len() not expected value of 13: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndex(t *testing.T) {
+	t.Log("Testing: IntSlice for index")
+	n := ints.Index(8)
+	if n != 5 {
+		t.Error("Index() not expected value of 5: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndexFail(t *testing.T) {
+	t.Log("Testing: IntSlice for index failure")
+	n := ints.Index(47)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndexRight(t *testing.T) {
+	t.Log("Testing: IntSlice for IndexRight")
+	n := ints.IndexRight(2)
+	if n != 8 {
+		t.Error("IndexRight() not expected value of 8: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndexRightFail(t *testing.T) {
+	t.Log("Testing: IntSlice for IndexRight failure")
+	n := ints.IndexRight(47)
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceSortTrue(t *testing.T) {
+	t.Log("Testing: IntSlice for Sort ascending")
+	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
+	ints.Sort(true)
+	t.Log("Ints: ", ints)
+	t.Log("Target: ", sorted)
+	for i := range ints {
+		if ints[i] != sorted[i] {
+			t.Error("Sort() order not as expected, ascending")
+		}
+	}
+}
+
+func TestIntSliceSortFalse(t *testing.T) {
+	t.Log("Testing: IntSlice for Sort descending")
+	sorted := IntSlice{935, 96, 34, 34, 8, 6, 5, 5, 4, 2, 2, 1, 0}
+	ints.Sort(false)
+	t.Log("Ints: ", ints)
+	t.Log("Target: ", sorted)
+	for i := range ints {
+		if ints[i] != sorted[i] {
+			t.Error("Sort() order not as expected, descending")
+		}
+	}
+}
+
+func TestIntSliceReverse(t *testing.T) {
+	t.Log("Testing: IntSlice for Reverse")
+	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
+	ints.Reverse()
+	t.Log("Ints: ", ints)
+	t.Log("Target: ", sorted)
+	for i := range ints {
+		if ints[i] != sorted[i] {
+			t.Error("Reverse() element positions do not match expected positions")
+		}
+	}
+}
+
+func TestIntSliceTruncateLeft(t *testing.T) {
+	t.Log("Testing: IntSlice for TruncateLeft")
+	target := IntSlice{0, 1, 2, 2, 4, 5}
+	ints.TruncateLeft(6)
+	if ints.Len() != 6 {
+		t.Error("TruncateLeft() not expected value length of 6: " + strconv.Itoa(strs.Len()))
+	}
+	for i := range ints {
+		if ints[i] != target[i] {
+			t.Error("TruncateLeft() not expected values & positions")
+		}
+	}
+}
+
+func TestIntSliceTruncateRight(t *testing.T) {
+	t.Log("Testing: IntSlice for TruncateRight")
+	target := IntSlice{2, 2, 4, 5}
+	ints.TruncateRight(4)
+	if ints.Len() != 4 {
+		t.Error("TruncateRight() not expected value length of 4: " + strconv.Itoa(strs.Len()))
+	}
+	for i := range ints {
+		if ints[i] != target[i] {
+			t.Error("TruncateRight() not expected values & positions")
+		}
+	}
+}
+
+func TestIntSliceLess(t *testing.T) {
+	t.Log("Testing: IntSlice for Less")
+	n := ints.Less(1, 2)
+	if n != true {
+		t.Error("Less() not expected value of true: " + strconv.FormatBool(n))
+	}
+}
+
+func TestIntSliceSwap(t *testing.T) {
+	t.Log("Testing: IntSlice for Swap")
+	target := IntSlice{2, 4, 2, 5}
+	ints.Swap(1, 2)
+	for i := range ints {
+		if ints[i] != target[i] {
+			t.Error("Swap() not expected values & positions")
+		}
 	}
 }

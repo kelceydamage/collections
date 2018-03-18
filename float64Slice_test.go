@@ -185,10 +185,10 @@ func TestFloat64SliceIndexRightFail(t *testing.T) {
 	}
 }
 
-func TestFloat64SliceSortTrue(t *testing.T) {
+func TestFloat64SliceSort(t *testing.T) {
 	t.Log("Testing: Float64Slice for Sort ascending")
 	sorted := Float64Slice{0, 1, 2.43, 2.5, 4.3, 5.2, 5.5, 6.567, 8.2, 34.54, 34.98762, 96.222, 935.342}
-	flts.Sort(true)
+	flts.Sort()
 	t.Log("Floats: ", flts)
 	t.Log("Target: ", sorted)
 	for i := range flts {
@@ -198,28 +198,28 @@ func TestFloat64SliceSortTrue(t *testing.T) {
 	}
 }
 
-func TestFloat64SliceSortFalse(t *testing.T) {
+func TestFloat64SliceReverse(t *testing.T) {
 	t.Log("Testing: Float64Slice for Sort descending")
 	sorted := Float64Slice{935.342, 96.222, 34.98762, 34.54, 8.2, 6.567, 5.5, 5.2, 4.3, 2.5, 2.43, 1, 0}
-	flts.Sort(false)
-	t.Log("Floats: ", flts)
-	t.Log("Target: ", sorted)
-	for i := range flts {
-		if flts[i] != sorted[i] {
-			t.Error("Sort() order not as expected, descending")
-		}
-	}
-}
-
-func TestFloat64SliceReverse(t *testing.T) {
-	t.Log("Testing: Float64Slice for Reverse")
-	sorted := Float64Slice{0, 1, 2.43, 2.5, 4.3, 5.2, 5.5, 6.567, 8.2, 34.54, 34.98762, 96.222, 935.342}
 	flts.Reverse()
 	t.Log("Floats: ", flts)
 	t.Log("Target: ", sorted)
 	for i := range flts {
 		if flts[i] != sorted[i] {
-			t.Error("Reverse() element positions do not match expected positions")
+			t.Error("Reverse() order not as expected, descending")
+		}
+	}
+}
+
+func TestFloat64SliceMirror(t *testing.T) {
+	t.Log("Testing: Float64Slice for Mirror")
+	sorted := Float64Slice{0, 1, 2.43, 2.5, 4.3, 5.2, 5.5, 6.567, 8.2, 34.54, 34.98762, 96.222, 935.342}
+	flts.Mirror()
+	t.Log("Floats: ", flts)
+	t.Log("Target: ", sorted)
+	for i := range flts {
+		if flts[i] != sorted[i] {
+			t.Error("Mirror() element positions do not match expected positions")
 		}
 	}
 }

@@ -191,3 +191,50 @@ func TestFloat64SliceReverse(t *testing.T) {
 		}
 	}
 }
+
+func TestFloat64SliceTruncateLeft(t *testing.T) {
+	t.Log("Testing: Float64Slice for TruncateLeft")
+	target := Float64Slice{0, 1, 2.43, 2.5, 4.3, 5.2}
+	flts.TruncateLeft(6)
+	if flts.Len() != 6 {
+		t.Error("TruncateLeft() not expected value length of 6: " + strconv.Itoa(strs.Len()))
+	}
+	for i := range flts {
+		if flts[i] != target[i] {
+			t.Error("TruncateLeft() not expected values & positions")
+		}
+	}
+}
+
+func TestFloat64SliceTruncateRight(t *testing.T) {
+	t.Log("Testing: Float64Slice for TruncateRight")
+	target := Float64Slice{2.43, 2.5, 4.3, 5.2}
+	flts.TruncateRight(4)
+	if flts.Len() != 4 {
+		t.Error("TruncateRight() not expected value length of 4: " + strconv.Itoa(strs.Len()))
+	}
+	for i := range flts {
+		if flts[i] != target[i] {
+			t.Error("TruncateRight() not expected values & positions")
+		}
+	}
+}
+
+func TestFloat64SliceLess(t *testing.T) {
+	t.Log("Testing: Float64Slice for Less")
+	n := flts.Less(1, 2)
+	if n != true {
+		t.Error("Less() not expected value of true: " + strconv.FormatBool(n))
+	}
+}
+
+func TestFloat64SliceSwap(t *testing.T) {
+	t.Log("Testing: Float64Slice for Swap")
+	target := Float64Slice{2.43, 4.3, 2.5, 5.2}
+	flts.Swap(1, 2)
+	for i := range flts {
+		if flts[i] != target[i] {
+			t.Error("Swap() not expected values & positions")
+		}
+	}
+}

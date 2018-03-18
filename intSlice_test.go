@@ -193,51 +193,49 @@ func TestIntSliceReverse(t *testing.T) {
 	}
 }
 
-/*
-func TestStringSliceTruncateLeft(t *testing.T) {
-	t.Log("Testing: StringSlice for TruncateLeft")
-	target := StringSlice{"are", "cat", "hello", "hi", "how", "kitty"}
-	strs.TruncateLeft(6)
-	if strs.Len() != 6 {
+func TestIntSliceTruncateLeft(t *testing.T) {
+	t.Log("Testing: IntSlice for TruncateLeft")
+	target := IntSlice{0, 1, 2, 2, 4, 5}
+	ints.TruncateLeft(6)
+	if ints.Len() != 6 {
 		t.Error("TruncateLeft() not expected value length of 6: " + strconv.Itoa(strs.Len()))
 	}
-	for i := range strs {
-		if strs[i] != target[i] {
+	for i := range ints {
+		if ints[i] != target[i] {
 			t.Error("TruncateLeft() not expected values & positions")
 		}
 	}
 }
 
-func TestStringSliceTruncateRight(t *testing.T) {
-	t.Log("Testing: StringSlice for TruncateRight")
-	target := StringSlice{"hello", "hi", "how", "kitty"}
-	strs.TruncateRight(4)
-	if strs.Len() != 4 {
+func TestIntSliceTruncateRight(t *testing.T) {
+	t.Log("Testing: IntSlice for TruncateRight")
+	target := IntSlice{2, 2, 4, 5}
+	ints.TruncateRight(4)
+	if ints.Len() != 4 {
 		t.Error("TruncateRight() not expected value length of 4: " + strconv.Itoa(strs.Len()))
 	}
-	for i := range strs {
-		if strs[i] != target[i] {
+	for i := range ints {
+		if ints[i] != target[i] {
 			t.Error("TruncateRight() not expected values & positions")
 		}
 	}
 }
 
-func TestStringSliceLess(t *testing.T) {
-	t.Log("Testing: StringSlice for Less")
-	n := strs.Less(1, 2)
+func TestIntSliceLess(t *testing.T) {
+	t.Log("Testing: IntSlice for Less")
+	n := ints.Less(1, 2)
 	if n != true {
 		t.Error("Less() not expected value of true: " + strconv.FormatBool(n))
 	}
 }
 
-func TestStringSliceSwap(t *testing.T) {
-	t.Log("Testing: StringSlice for Swap")
-	target := StringSlice{"hello", "how", "hi", "kitty"}
-	strs.Swap(1, 2)
-	for i := range strs {
-		if strs[i] != target[i] {
+func TestIntSliceSwap(t *testing.T) {
+	t.Log("Testing: IntSlice for Swap")
+	target := IntSlice{2, 4, 2, 5}
+	ints.Swap(1, 2)
+	for i := range ints {
+		if ints[i] != target[i] {
 			t.Error("Swap() not expected values & positions")
 		}
 	}
 }
-*/

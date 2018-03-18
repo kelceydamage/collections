@@ -173,16 +173,18 @@ func (s *IntSlice) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
 }
 
-// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending.
+// Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
-func (s *IntSlice) Sort(b bool) {
-	if b {
-		sort.Sort(intSliceAsc{*s})
-	} else {
-		sort.Sort(intSliceDsc{*s})
-	}
+func (s *IntSlice) Sort() {
+	sort.Sort(intSliceAsc{*s})
+}
+
+// Reverse inplace sorts the slice descending.
+//
+// Implements sort.Sort() method.
+func (s *IntSlice) Reverse() {
+	sort.Sort(intSliceDsc{*s})
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
@@ -223,8 +225,8 @@ func (s *IntSlice) TruncateRight(n int) {
 	}
 }
 
-// Reverse will swap the order of ints in the slice.
-func (s *IntSlice) Reverse() {
+// Mirror will swap the order of ints in the slice.
+func (s *IntSlice) Mirror() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

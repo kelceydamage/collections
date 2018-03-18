@@ -3,7 +3,7 @@
 
 import "github.com/kelceydamage/collections"
 
-Collections is a library of types and methods that make manipulating slices a lot easier by providing some basic functionality.
+Collections is a library of types and methods that make manipulating slices a lot easier by providing some basic functionality. 
 
 Collections is compatible with the built in Sort types, and should be familiar to use. 
 

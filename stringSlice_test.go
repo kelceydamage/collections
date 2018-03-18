@@ -49,10 +49,10 @@ func TestStringSliceLen(t *testing.T) {
 	}
 }
 
-func TestStringSliceSortTrue(t *testing.T) {
+func TestStringSliceSort(t *testing.T) {
 	t.Log("Testing: StringSlice for Sort ascending")
 	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
-	strs.Sort(true)
+	strs.Sort()
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
 	for i := range strs {
@@ -62,28 +62,28 @@ func TestStringSliceSortTrue(t *testing.T) {
 	}
 }
 
-func TestStringSliceSortFalse(t *testing.T) {
+func TestStringSliceReverse(t *testing.T) {
 	t.Log("Testing: StringSlice for Sort descending")
 	sorted := StringSlice{"you", "world", "kitty", "how", "hi", "hello", "cat", "are"}
-	strs.Sort(false)
-	t.Log("Strings: ", strs)
-	t.Log("Target: ", sorted)
-	for i := range strs {
-		if strs[i] != sorted[i] {
-			t.Error("Sort() order not as expected, descending")
-		}
-	}
-}
-
-func TestStringSliceReverse(t *testing.T) {
-	t.Log("Testing: StringSlice for Reverse")
-	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
 	strs.Reverse()
 	t.Log("Strings: ", strs)
 	t.Log("Target: ", sorted)
 	for i := range strs {
 		if strs[i] != sorted[i] {
-			t.Error("Reverse() element positions do not match expected positions")
+			t.Error("Reverse() order not as expected, descending")
+		}
+	}
+}
+
+func TestStringSliceMirror(t *testing.T) {
+	t.Log("Testing: StringSlice for Mirror")
+	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
+	strs.Mirror()
+	t.Log("Strings: ", strs)
+	t.Log("Target: ", sorted)
+	for i := range strs {
+		if strs[i] != sorted[i] {
+			t.Error("Mirror() element positions do not match expected positions")
 		}
 	}
 }

@@ -75,16 +75,19 @@ func (s BoolSlice) Len() int {
 	return len(s)
 }
 
-// Sort inplace sorts the slice. Passing [true] will sort with true booleans first, while passing [false] will sort
-// the opposite.
+// Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
-func (s *BoolSlice) Sort(b bool) {
-	if b {
-		sort.Sort(s)
-	} else {
-		s.Reverse()
-	}
+func (s *BoolSlice) Sort() {
+	sort.Sort(*s)
+}
+
+// Reverse inplace sorts the slice descending.
+//
+// Implements sort.Sort() method.
+func (s *BoolSlice) Reverse() {
+	sort.Sort(*s)
+	s.Mirror()
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
@@ -112,8 +115,8 @@ func (s *BoolSlice) TruncateRight(n int) {
 	}
 }
 
-// Reverse will swap the order of bools in the slice.
-func (s *BoolSlice) Reverse() {
+// Mirror will swap the order of bools in the slice.
+func (s *BoolSlice) Mirror() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

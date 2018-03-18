@@ -51,10 +51,10 @@ func TestBoolSliceLen(t *testing.T) {
 	}
 }
 
-func TestBoolSliceSortTrue(t *testing.T) {
+func TestBoolSliceSort(t *testing.T) {
 	t.Log("Testing: BoolSlice for Sort true-first")
 	sorted := BoolSlice{true, true, true, true, false, false, false, false}
-	bools.Sort(true)
+	bools.Sort()
 	t.Log("Bools: ", bools)
 	t.Log("Target: ", sorted)
 	for i := range bools {
@@ -64,28 +64,28 @@ func TestBoolSliceSortTrue(t *testing.T) {
 	}
 }
 
-func TestBoolSliceSortFalse(t *testing.T) {
+func TestBoolSliceReverse(t *testing.T) {
 	t.Log("Testing: BoolSlice for Sort false-first")
 	sorted := BoolSlice{false, false, false, false, true, true, true, true}
-	bools.Sort(false)
-	t.Log("Bools: ", bools)
-	t.Log("Target: ", sorted)
-	for i := range bools {
-		if bools[i] != sorted[i] {
-			t.Error("Sort() order not as expected, false before true")
-		}
-	}
-}
-
-func TestBoolSliceReverse(t *testing.T) {
-	t.Log("Testing: BoolSlice for Reverse")
-	sorted := BoolSlice{true, true, true, true, false, false, false, false}
 	bools.Reverse()
 	t.Log("Bools: ", bools)
 	t.Log("Target: ", sorted)
 	for i := range bools {
 		if bools[i] != sorted[i] {
-			t.Error("Reverse() element positions do not match expected positions")
+			t.Error("Reverse() order not as expected, false before true")
+		}
+	}
+}
+
+func TestBoolSliceMirror(t *testing.T) {
+	t.Log("Testing: BoolSlice for Mirror")
+	sorted := BoolSlice{true, true, true, true, false, false, false, false}
+	bools.Mirror()
+	t.Log("Bools: ", bools)
+	t.Log("Target: ", sorted)
+	for i := range bools {
+		if bools[i] != sorted[i] {
+			t.Error("Mirror() element positions do not match expected positions")
 		}
 	}
 }

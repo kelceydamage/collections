@@ -60,6 +60,22 @@ func TestNegIntSliceSum(t *testing.T) {
 	}
 }
 
+func TestNegIntSliceVariance(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Variance")
+	n := negints.Variance()
+	if n != 60565.91715976331 {
+		t.Error("Variance() not expected value of 60565.91715976331: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestNegIntSliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for StdDev")
+	n := negints.StdDev()
+	if n != 246.10143672836068 {
+		t.Error("StdDev() not expected value of 246.10143672836068: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
 // IntSlice tests with positive integers
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -108,6 +124,22 @@ func TestIntSliceSum(t *testing.T) {
 	n := ints.Sum()
 	if n != 1132 {
 		t.Error("Sum() not expected value of 1132: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceVariance(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for Variance")
+	n := ints.Variance()
+	if n != 60565.91715976331 {
+		t.Error("Variance() not expected value of 60565.91715976331: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestIntSliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values IntSlice for StdDev")
+	n := ints.StdDev()
+	if n != 246.10143672836068 {
+		t.Error("StdDev() not expected value of 246.10143672836068: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 

@@ -59,6 +59,22 @@ func TestNegFloat64SliceSum(t *testing.T) {
 	}
 }
 
+func TestNegFloat64SliceVariance(t *testing.T) {
+	t.Log("Testing: positive values Float64Slice for Variance")
+	n := negflts.Variance()
+	if n != 60564.07525865048 {
+		t.Error("Variance() not expected value of 60564.07525865048: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestNegFloat64SliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values Float64Slice for StdDev")
+	n := negflts.StdDev()
+	if n != 246.09769454151836 {
+		t.Error("StdDev() not expected value of 246.09769454151836: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
 // Float64Slice tests with positive integers
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -107,6 +123,22 @@ func TestFloat64SliceSum(t *testing.T) {
 	n := flts.Sum()
 	if n != 1136.78862 {
 		t.Error("Sum() not expected value of 1136.78862: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestFloat64SliceVariance(t *testing.T) {
+	t.Log("Testing: positive values Float64Slice for Variance")
+	n := flts.Variance()
+	if n != 60564.07525865048 {
+		t.Error("Variance() not expected value of 60564.07525865048: " + strconv.FormatFloat(n, 'f', -1, 64))
+	}
+}
+
+func TestFloat64SliceStdDev(t *testing.T) {
+	t.Log("Testing: positive values Float64Slice for StdDev")
+	n := flts.StdDev()
+	if n != 246.09769454151836 {
+		t.Error("StdDev() not expected value of 246.09769454151836: " + strconv.FormatFloat(n, 'f', -1, 64))
 	}
 }
 

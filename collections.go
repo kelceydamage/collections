@@ -28,6 +28,8 @@
 //   sort.Sort(sort.Reverse(sort.IntSlice(s)))
 // Is the same as:
 //   sort.Sort(sort.Reverse(collections.IntSlice(s)))
+// However this is also the same as:
+//   collections.IntSlice.Reverse()
 package collections
 
 // Slice interface allows a small amount of generic application to all collections slices.

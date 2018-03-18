@@ -186,10 +186,10 @@ func TestIntSliceIndexRightFail(t *testing.T) {
 	}
 }
 
-func TestIntSliceSortTrue(t *testing.T) {
+func TestIntSliceSort(t *testing.T) {
 	t.Log("Testing: IntSlice for Sort ascending")
 	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
-	ints.Sort(true)
+	ints.Sort()
 	t.Log("Ints: ", ints)
 	t.Log("Target: ", sorted)
 	for i := range ints {
@@ -199,28 +199,28 @@ func TestIntSliceSortTrue(t *testing.T) {
 	}
 }
 
-func TestIntSliceSortFalse(t *testing.T) {
+func TestIntSliceReverse(t *testing.T) {
 	t.Log("Testing: IntSlice for Sort descending")
 	sorted := IntSlice{935, 96, 34, 34, 8, 6, 5, 5, 4, 2, 2, 1, 0}
-	ints.Sort(false)
-	t.Log("Ints: ", ints)
-	t.Log("Target: ", sorted)
-	for i := range ints {
-		if ints[i] != sorted[i] {
-			t.Error("Sort() order not as expected, descending")
-		}
-	}
-}
-
-func TestIntSliceReverse(t *testing.T) {
-	t.Log("Testing: IntSlice for Reverse")
-	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
 	ints.Reverse()
 	t.Log("Ints: ", ints)
 	t.Log("Target: ", sorted)
 	for i := range ints {
 		if ints[i] != sorted[i] {
-			t.Error("Reverse() element positions do not match expected positions")
+			t.Error("Reverse() order not as expected, descending")
+		}
+	}
+}
+
+func TestIntSliceMirror(t *testing.T) {
+	t.Log("Testing: IntSlice for Mirror")
+	sorted := IntSlice{0, 1, 2, 2, 4, 5, 5, 6, 8, 34, 34, 96, 935}
+	ints.Mirror()
+	t.Log("Ints: ", ints)
+	t.Log("Target: ", sorted)
+	for i := range ints {
+		if ints[i] != sorted[i] {
+			t.Error("Mirror() element positions do not match expected positions")
 		}
 	}
 }

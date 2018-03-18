@@ -24,12 +24,13 @@
 //  len()
 //  Index(string)
 //  IndexRight(string)
-//  Sort(bool)
+//  Sort()
 //  Swap(i, j)
 //  Less(i, j)
 //  TruncateLeft(int)
 //  TruncateRight(int)
 //  Reverse()
+//  Mirror()
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
 //-------------------------------------------------------------------------------------------------- <-100
@@ -75,16 +76,18 @@ func (s StringSlice) Len() int {
 	return len(s)
 }
 
-// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending.
+// Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
-func (s *StringSlice) Sort(b bool) {
-	if b {
-		sort.Sort(strSliceAsc{*s})
-	} else {
-		sort.Sort(strSliceDsc{*s})
-	}
+func (s *StringSlice) Sort() {
+	sort.Sort(strSliceAsc{*s})
+}
+
+// Reverse inplace sorts the slice descending.
+//
+// Implements sort.Sort() method.
+func (s *StringSlice) Reverse() {
+	sort.Sort(strSliceDsc{*s})
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
@@ -125,8 +128,8 @@ func (s *StringSlice) TruncateRight(n int) {
 	}
 }
 
-// Reverse will swap the order of ints in the slice.
-func (s *StringSlice) Reverse() {
+// Mirror will swap the order of ints in the slice.
+func (s *StringSlice) Mirror() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

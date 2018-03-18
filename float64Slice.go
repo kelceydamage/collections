@@ -31,12 +31,13 @@
 //  Sum()
 //  Variance()
 //  StdDev()
-//  Sort(bool)
+//  Sort()
 //  Swap(i, j)
 //  Less(i, j)
 //  TruncateLeft(int)
 //  TruncateRight(int)
 //  Reverse()
+//  Mirror()
 
 //---------------------------------------------------------------------------------------------------- <-100
 
@@ -173,16 +174,18 @@ func (s *Float64Slice) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
 }
 
-// Sort inplace sorts the slice. Passing [true] will sort ascending, while passing [false] will sort
-// descending
+// Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
-func (s *Float64Slice) Sort(b bool) {
-	if b {
-		sort.Sort(fltSliceAsc{*s})
-	} else {
-		sort.Sort(fltSliceDsc{*s})
-	}
+func (s *Float64Slice) Sort() {
+	sort.Sort(fltSliceAsc{*s})
+}
+
+// Reverse inplace sorts the slice descending.
+//
+// Implements sort.Sort() method.
+func (s *Float64Slice) Reverse() {
+	sort.Sort(fltSliceDsc{*s})
 }
 
 // Swap implementation for general sort. This will swap the position of 2 items in the slice.
@@ -223,8 +226,8 @@ func (s *Float64Slice) TruncateRight(n int) {
 	}
 }
 
-// Reverse will swap the order of float64s in the slice.
-func (s *Float64Slice) Reverse() {
+// Mirror will swap the order of float64s in the slice .
+func (s *Float64Slice) Mirror() {
 	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}

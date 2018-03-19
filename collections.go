@@ -46,8 +46,8 @@ type Slice interface {
 	TruncateRight(int)
 }
 
-// MathSlice interface extends Slice with basic math functions.
-type MathSlice interface {
+// NumSlice interface extends Slice with basic math functions.
+type NumSlice interface {
 	Slice
 	Sum() float64
 	Avg() float64

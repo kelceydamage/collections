@@ -28,7 +28,7 @@ func TestBoolSliceIndexFail(t *testing.T) {
 
 func TestBoolSliceSliceIndexFail2(t *testing.T) {
 	t.Log("Testing: BoolSlice for IndexRight")
-	n := ints.Index("ted")
+	n := bools.Index("ted")
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -53,7 +53,7 @@ func TestBoolSliceIndexRightFail(t *testing.T) {
 
 func TestBoolSliceSliceIndexRightFail2(t *testing.T) {
 	t.Log("Testing: FloatBoolSlice64Slice for IndexRight")
-	n := ints.IndexRight("ted")
+	n := bools.IndexRight("ted")
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

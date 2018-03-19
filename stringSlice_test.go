@@ -27,7 +27,7 @@ func TestStringSliceIndexFail(t *testing.T) {
 
 func TestStringSliceIndexFail2(t *testing.T) {
 	t.Log("Testing: IntSlice for Index")
-	n := ints.Index(22)
+	n := strs.Index(22)
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -51,7 +51,7 @@ func TestStringSliceIndexRightFail(t *testing.T) {
 
 func TestStringSliceIndexRightFail2(t *testing.T) {
 	t.Log("Testing: IntSlice for IndexRight")
-	n := ints.IndexRight(22)
+	n := strs.IndexRight(22)
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

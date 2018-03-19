@@ -47,7 +47,11 @@ type StringSlice []string
 
 // Index retrives the first index [i] from the left, for the provided value [j] (string).
 // Returns -1 if index not found.
-func (s *StringSlice) Index(j string) int {
+func (s *StringSlice) Index(j interface{}) int {
+	_, err := j.(string)
+	if !err {
+		return -1
+	}
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -58,7 +62,11 @@ func (s *StringSlice) Index(j string) int {
 
 // IndexRight retrives the first index [i] from the right, for the provided value [j] (string).
 // Returns -1 if index not found.
-func (s *StringSlice) IndexRight(j string) int {
+func (s *StringSlice) IndexRight(j interface{}) int {
+	_, err := j.(string)
+	if !err {
+		return -1
+	}
 	k := -1
 	for i, v := range *s {
 		if v == j {

@@ -56,9 +56,13 @@ type IntSlice []int
 
 // Index retrives the first index [i] from the left, for the provided value [j] (int).
 // Returns -1 if index not found.
-func (s *IntSlice) Index(j int) int {
+func (s *IntSlice) Index(j interface{}) int {
+	_, err := j.(int)
+	if !err {
+		return -1
+	}
 	for i, v := range *s {
-		if v == j {
+		if v == j.(int) {
 			return i
 		}
 	}
@@ -67,7 +71,11 @@ func (s *IntSlice) Index(j int) int {
 
 // IndexRight retrives the first index [i] from the right, for the provided value [j] (int).
 // Returns -1 if index not found.
-func (s *IntSlice) IndexRight(j int) int {
+func (s *IntSlice) IndexRight(j interface{}) int {
+	_, err := j.(int)
+	if !err {
+		return -1
+	}
 	k := -1
 	for i, v := range *s {
 		if v == j {

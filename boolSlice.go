@@ -47,7 +47,11 @@ type BoolSlice []bool
 
 // Index retrives the first index [i] from the left, for the provided value [j] (bool).
 // Returns -1 if index not found.
-func (s *BoolSlice) Index(j bool) int {
+func (s *BoolSlice) Index(j interface{}) int {
+	_, err := j.(bool)
+	if !err {
+		return -1
+	}
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -58,7 +62,11 @@ func (s *BoolSlice) Index(j bool) int {
 
 // IndexRight retrives the first index [i] from the right, for the provided value [j] (bool).
 // Returns -1 if index not found.
-func (s *BoolSlice) IndexRight(j bool) int {
+func (s *BoolSlice) IndexRight(j interface{}) int {
+	_, err := j.(bool)
+	if !err {
+		return -1
+	}
 	k := -1
 	for i, v := range *s {
 		if v == j {

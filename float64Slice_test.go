@@ -154,7 +154,7 @@ func TestFloat64SliceLen(t *testing.T) {
 }
 
 func TestFloat64SliceIndex(t *testing.T) {
-	t.Log("Testing: Float64Slice for index")
+	t.Log("Testing: Float64Slice for Index")
 	n := flts.Index(5.2)
 	if n != 3 {
 		t.Error("Index() not expected value of 5: " + strconv.Itoa(n))
@@ -162,8 +162,16 @@ func TestFloat64SliceIndex(t *testing.T) {
 }
 
 func TestFloat64SliceIndexFail(t *testing.T) {
-	t.Log("Testing: Float64Slice for index failure")
-	n := flts.Index(10)
+	t.Log("Testing: Float64Slice for Index failure")
+	n := flts.Index(10.0)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestFloat64SliceSliceIndexFail2(t *testing.T) {
+	t.Log("Testing: Float64Slice for Index")
+	n := flts.Index("ted")
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -179,7 +187,15 @@ func TestFloat64SliceIndexRight(t *testing.T) {
 
 func TestFloat64SliceIndexRightFail(t *testing.T) {
 	t.Log("Testing: Float64Slice for IndexRight failure")
-	n := flts.IndexRight(10)
+	n := flts.IndexRight(10.0)
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestFloat64SliceSliceIndexRightFail2(t *testing.T) {
+	t.Log("Testing: Float64Slice for IndexRight")
+	n := flts.IndexRight("ted")
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

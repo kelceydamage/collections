@@ -56,7 +56,11 @@ type Float64Slice []float64
 
 // Index retrives the first index [i] from the left, for the provided value [j] (int).
 // Returns -1 if index not found.
-func (s *Float64Slice) Index(j float64) int {
+func (s *Float64Slice) Index(j interface{}) int {
+	_, err := j.(float64)
+	if !err {
+		return -1
+	}
 	for i, v := range *s {
 		if v == j {
 			return i
@@ -67,7 +71,11 @@ func (s *Float64Slice) Index(j float64) int {
 
 // IndexRight retrives the first index [i] from the right, for the provided value [j] (float64).
 // Returns -1 if index not found.
-func (s *Float64Slice) IndexRight(j float64) int {
+func (s *Float64Slice) IndexRight(j interface{}) int {
+	_, err := j.(float64)
+	if !err {
+		return -1
+	}
 	k := -1
 	for i, v := range *s {
 		if v == j {

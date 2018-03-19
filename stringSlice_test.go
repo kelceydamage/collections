@@ -10,7 +10,7 @@ var strs = StringSlice{"hi", "how", "are", "you", "hello", "world", "kitty", "ca
 // BoolSlice tests
 //-------------------------------------------------------------------------------------------------- <-100
 func TestStringSliceIndex(t *testing.T) {
-	t.Log("Testing: StringSlice for index")
+	t.Log("Testing: StringSlice for Index")
 	n := strs.Index("hello")
 	if n != 4 {
 		t.Error("Index() not expected value of 4: " + strconv.Itoa(n))
@@ -18,8 +18,16 @@ func TestStringSliceIndex(t *testing.T) {
 }
 
 func TestStringSliceIndexFail(t *testing.T) {
-	t.Log("Testing: StringSlice for index failure")
+	t.Log("Testing: StringSlice for Index failure")
 	n := strs.Index("fred")
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestStringSliceIndexFail2(t *testing.T) {
+	t.Log("Testing: IntSlice for Index")
+	n := strs.Index(22)
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -36,6 +44,14 @@ func TestStringSliceIndexRight(t *testing.T) {
 func TestStringSliceIndexRightFail(t *testing.T) {
 	t.Log("Testing: StringSlice for IndexRight failure")
 	n := strs.IndexRight("fred")
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestStringSliceIndexRightFail2(t *testing.T) {
+	t.Log("Testing: IntSlice for IndexRight")
+	n := strs.IndexRight(22)
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

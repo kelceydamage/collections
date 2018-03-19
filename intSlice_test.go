@@ -155,7 +155,7 @@ func TestIntSliceLen(t *testing.T) {
 }
 
 func TestIntSliceIndex(t *testing.T) {
-	t.Log("Testing: IntSlice for index")
+	t.Log("Testing: IntSlice for Index")
 	n := ints.Index(8)
 	if n != 5 {
 		t.Error("Index() not expected value of 5: " + strconv.Itoa(n))
@@ -163,8 +163,16 @@ func TestIntSliceIndex(t *testing.T) {
 }
 
 func TestIntSliceIndexFail(t *testing.T) {
-	t.Log("Testing: IntSlice for index failure")
+	t.Log("Testing: IntSlice for Index failure")
 	n := ints.Index(47)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndexFail2(t *testing.T) {
+	t.Log("Testing: IntSlice for Index")
+	n := ints.Index("ted")
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -181,6 +189,14 @@ func TestIntSliceIndexRight(t *testing.T) {
 func TestIntSliceIndexRightFail(t *testing.T) {
 	t.Log("Testing: IntSlice for IndexRight failure")
 	n := ints.IndexRight(47)
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestIntSliceIndexRightFail2(t *testing.T) {
+	t.Log("Testing: IntSlice for IndexRight")
+	n := ints.IndexRight("ted")
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

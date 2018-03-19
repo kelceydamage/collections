@@ -10,7 +10,7 @@ var bools = BoolSlice{true, true, false, true, false, false, false, true}
 // BoolSlice tests
 //-------------------------------------------------------------------------------------------------- <-100
 func TestBoolSliceIndex(t *testing.T) {
-	t.Log("Testing: BoolSlice for index")
+	t.Log("Testing: BoolSlice for Index")
 	n := bools.Index(false)
 	if n != 2 {
 		t.Error("Index() not expected value of 2: " + strconv.Itoa(n))
@@ -19,8 +19,16 @@ func TestBoolSliceIndex(t *testing.T) {
 
 func TestBoolSliceIndexFail(t *testing.T) {
 	target := BoolSlice{false, false, false}
-	t.Log("Testing: BoolSlice for index failure")
+	t.Log("Testing: BoolSlice for Index failure")
 	n := target.Index(true)
+	if n != -1 {
+		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestBoolSliceSliceIndexFail2(t *testing.T) {
+	t.Log("Testing: BoolSlice for IndexRight")
+	n := ints.Index("ted")
 	if n != -1 {
 		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
 	}
@@ -38,6 +46,14 @@ func TestBoolSliceIndexRightFail(t *testing.T) {
 	target := BoolSlice{false, false, false}
 	t.Log("Testing: BoolSlice for IndexRight failure")
 	n := target.IndexRight(true)
+	if n != -1 {
+		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
+func TestBoolSliceSliceIndexRightFail2(t *testing.T) {
+	t.Log("Testing: FloatBoolSlice64Slice for IndexRight")
+	n := ints.IndexRight("ted")
 	if n != -1 {
 		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
 	}

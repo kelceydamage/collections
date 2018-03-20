@@ -289,7 +289,7 @@ func TestFloat64SliceSwap(t *testing.T) {
 
 func TestFloat64SliceAppend(t *testing.T) {
 	t.Log("Testing: Float64Slice for Append")
-	target := Float64Slice{2.43, 4.3, 2.5, 5.2}
+	target := Float64Slice{2.43, 4.3, 2.5, 5.2, 3.7}
 	flts.Append(3.7)
 	for i := range flts {
 		if flts[i] != target[i] {
@@ -301,7 +301,7 @@ func TestFloat64SliceAppend(t *testing.T) {
 func TestFloat64SliceAppendFail(t *testing.T) {
 	t.Log("Testing: Float64Slice for Append")
 	err := flts.Append("cat")
-	if err == -1 {
-		t.Error("Append() not expected values & positions")
+	if err != -1 {
+		t.Error("Append() not expected value length of -1")
 	}
 }

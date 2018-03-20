@@ -140,12 +140,12 @@ func (s *StringSlice) TruncateRight(n int) {
 
 // Mirror will swap the order of ints in the slice.
 func (s *StringSlice) Mirror() {
-	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+	for i, j := 0, len((*s))-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }
 
-// Append will add a value of type int, into the Intslice.
+// Append will add a value of type string, into the StringSlice.
 func (s *StringSlice) Append(j interface{}) int {
 	_, err := j.(string)
 	if !err {

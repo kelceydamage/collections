@@ -230,13 +230,23 @@ func (s *IntSlice) TruncateLeft(n int) {
 // TruncateRight shrinks the slice to [n] amount of ints starting from the right.
 func (s *IntSlice) TruncateRight(n int) {
 	if n != -1 && n <= len((*s)) {
-		(*s) = (*s)[(*s).Len()-n:]
+		(*s) = (*s)[len((*s))-n:]
 	}
 }
 
 // Mirror will swap the order of ints in the slice.
 func (s *IntSlice) Mirror() {
-	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+	for i, j := 0, len((*s))-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
+}
+
+// Append will add a value of type int, into the Intslice.
+func (s *IntSlice) Append(j interface{}) int {
+	_, err := j.(int)
+	if !err {
+		return -1
+	}
+	(*s) = append((*s), j.(int))
+	return 0
 }

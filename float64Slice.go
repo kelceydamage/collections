@@ -240,3 +240,13 @@ func (s *Float64Slice) Mirror() {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }
+
+// Append will add a value of type float64, into the Float64Slice.
+func (s *Float64Slice) Append(j interface{}) int {
+	_, err := j.(float64)
+	if !err {
+		return -1
+	}
+	(*s) = append((*s), j.(float64))
+	return 0
+}

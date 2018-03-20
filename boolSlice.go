@@ -130,3 +130,13 @@ func (s *BoolSlice) Mirror() {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }
+
+// Append will add a value of type bool, into the BoolSlice.
+func (s *BoolSlice) Append(j interface{}) int {
+	_, err := j.(bool)
+	if !err {
+		return -1
+	}
+	(*s) = append((*s), j.(bool))
+	return 0
+}

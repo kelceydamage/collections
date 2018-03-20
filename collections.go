@@ -44,6 +44,7 @@ type Slice interface {
 	IndexRight(interface{}) int
 	TruncateLeft(int)
 	TruncateRight(int)
+	Append(interface{}) int
 }
 
 // NumSlice interface extends Slice with basic math functions.
@@ -112,4 +113,9 @@ func Index(s Slice, j interface{}) int {
 // IndexRight is a function interface for the IndexRight method on collections slices.
 func IndexRight(s Slice, j interface{}) int {
 	return s.IndexRight(j)
+}
+
+// Append is a function interface for the append method on collections slices.
+func Append(s Slice, j interface{}) int {
+	return s.Append(j)
 }

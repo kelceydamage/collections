@@ -106,3 +106,14 @@ func TestSwap(t *testing.T) {
 		}
 	}
 }
+
+func TestAppend(t *testing.T) {
+	t.Log("Testing: Append func interface")
+	target := IntSlice{1, 2, 3, 2, 3}
+	Append(&s, 3)
+	for i := range s {
+		if (*&s)[i] != (*&target)[i] {
+			t.Error("Append() order not as expected")
+		}
+	}
+}

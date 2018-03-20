@@ -150,3 +150,22 @@ func TestStringSliceSwap(t *testing.T) {
 		}
 	}
 }
+
+func TestStringSliceAppend(t *testing.T) {
+	t.Log("Testing: StringSlice for Append")
+	target := StringSlice{"hello", "how", "hi", "kitty", "cat"}
+	strs.Append("cat")
+	for i := range strs {
+		if strs[i] != target[i] {
+			t.Error("Append() not expected values & positions")
+		}
+	}
+}
+
+func TestStringSliceAppendFail(t *testing.T) {
+	t.Log("Testing: StringSlice for Append")
+	err := strs.Append(20)
+	if err != -1 {
+		t.Error("Append() not expected value length of -1")
+	}
+}

@@ -144,3 +144,13 @@ func (s *StringSlice) Mirror() {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }
+
+// Append will add a value of type int, into the Intslice.
+func (s *StringSlice) Append(j interface{}) int {
+	_, err := j.(string)
+	if !err {
+		return -1
+	}
+	(*s) = append((*s), j.(string))
+	return 0
+}

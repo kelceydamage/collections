@@ -125,11 +125,9 @@ func (s *Float64Slice) MinNonZero() (float64, int) {
 	n, _ := s.Max()
 	k := 0
 	for i, v := range *s {
-		if v != 0 {
-			if v < n {
-				n = v
-				k = i
-			}
+		if v < n && v != 0 {
+			n = v
+			k = i
 		}
 	}
 	return n, k
@@ -154,11 +152,9 @@ func (s *Float64Slice) MaxNonZero() (float64, int) {
 	n, _ := s.Min()
 	k := 0
 	for i, v := range *s {
-		if v != 0 {
-			if v > n {
-				n = v
-				k = i
-			}
+		if v > n && v != 0 {
+			n = v
+			k = i
 		}
 	}
 	return n, k
@@ -236,7 +232,7 @@ func (s *Float64Slice) TruncateRight(n int) {
 
 // Mirror will swap the order of float64s in the slice .
 func (s *Float64Slice) Mirror() {
-	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+	for i, j := 0, len((*s))-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }

@@ -126,7 +126,7 @@ func (s *BoolSlice) TruncateRight(n int) {
 
 // Mirror will swap the order of bools in the slice.
 func (s *BoolSlice) Mirror() {
-	for i, j := 0, (*s).Len()-1; i < j; i, j = i+1, j-1 {
+	for i, j := 0, len((*s))-1; i < j; i, j = i+1, j-1 {
 		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
 	}
 }

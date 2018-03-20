@@ -44,6 +44,7 @@
 package collections
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
@@ -89,7 +90,7 @@ func (s *IntSlice) IndexRight(j interface{}) int {
 }
 
 // Sum add all the values in the slice and returns the result.
-func (s *IntSlice) Sum() int {
+func (s *IntSlice) Sum() interface{} {
 	n := 0
 	for _, v := range *s {
 		n += v
@@ -104,11 +105,11 @@ func (s IntSlice) Len() int {
 
 // Avg returns the average of all values in the slice. Expressed as a float64
 func (s *IntSlice) Avg() float64 {
-	return float64(s.Sum()) / float64(s.Len())
+	return float64(s.Sum().(int)) / float64(s.Len())
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
-func (s *IntSlice) Min() (int, int) {
+func (s *IntSlice) Min() (interface{}, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -121,11 +122,11 @@ func (s *IntSlice) Min() (int, int) {
 }
 
 // MinNonZero returns the smallest non-zero value [n] in the slice along with its index [k].
-func (s *IntSlice) MinNonZero() (int, int) {
+func (s *IntSlice) MinNonZero() (interface{}, int) {
 	n, _ := s.Max()
 	k := 0
 	for i, v := range *s {
-		if v < n && v != 0 {
+		if v < n.(int) && v != 0 {
 			n = v
 			k = i
 		}
@@ -134,7 +135,7 @@ func (s *IntSlice) MinNonZero() (int, int) {
 }
 
 // Max returns the largest value [n] in the slice along with its index [k].
-func (s *IntSlice) Max() (int, int) {
+func (s *IntSlice) Max() (interface{}, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -148,11 +149,11 @@ func (s *IntSlice) Max() (int, int) {
 
 // MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
 // Intended for use with negative integers.
-func (s *IntSlice) MaxNonZero() (int, int) {
+func (s *IntSlice) MaxNonZero() (interface{}, int) {
 	n, _ := s.Min()
 	k := 0
 	for i, v := range *s {
-		if v > n && v != 0 {
+		if v > n.(int) && v != 0 {
 			n = v
 			k = i
 		}
@@ -239,10 +240,12 @@ func (s *IntSlice) Mirror() {
 
 // Append will add a value of type int, into the Intslice.
 func (s *IntSlice) Append(j interface{}) int {
+	fmt.Println("int")
 	_, err := j.(int)
 	if !err {
 		return -1
 	}
+	fmt.Println(11)
 	(*s) = append((*s), j.(int))
 	return 0
 }

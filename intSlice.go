@@ -44,7 +44,6 @@
 package collections
 
 import (
-	"fmt"
 	"math"
 	"sort"
 )
@@ -244,7 +243,6 @@ func (s *IntSlice) Append(j interface{}) int {
 	if !err {
 		return -1
 	}
-	fmt.Println(11)
 	(*s) = append((*s), j.(int))
 	return 0
 }

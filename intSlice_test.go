@@ -15,32 +15,32 @@ var negints = IntSlice{-1, -4, -2, -5, -6, -8, -935, -34, -2, -34, -5, -96, 0}
 func TestNegIntSliceMax(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for Max")
 	n, _ := negints.Max()
-	if n != 0 {
-		t.Error("Max() not expected value of 0: " + strconv.Itoa(n))
+	if n.(int) != 0 {
+		t.Error("Max() not expected value of 0: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestNegIntSliceMaxNonZero(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for MaxNonZero")
 	n, _ := negints.MaxNonZero()
-	if n != -1 {
-		t.Error("MaxNonZero() not expected value of -1: " + strconv.Itoa(n))
+	if n.(int) != -1 {
+		t.Error("MaxNonZero() not expected value of -1: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestNegIntSliceMin(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for Min")
 	n, _ := negints.Min()
-	if n != -935 {
-		t.Error("Min() not expected value of -935: " + strconv.Itoa(n))
+	if n.(int) != -935 {
+		t.Error("Min() not expected value of -935: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestNegIntSliceMinNonZero(t *testing.T) {
 	t.Log("Testing: negative values IntSlice for MinNonZero")
 	n, _ := negints.MinNonZero()
-	if n != -935 {
-		t.Error("MinNonZero() not expected value of -935: " + strconv.Itoa(n))
+	if n.(int) != -935 {
+		t.Error("MinNonZero() not expected value of -935: " + strconv.Itoa(n.(int)))
 	}
 }
 
@@ -55,8 +55,8 @@ func TestNegIntSliceAvg(t *testing.T) {
 func TestNegIntSliceSum(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Sum")
 	n := negints.Sum()
-	if n != -1132 {
-		t.Error("Sum() not expected value of -1132: " + strconv.Itoa(n))
+	if n.(int) != -1132 {
+		t.Error("Sum() not expected value of -1132: " + strconv.Itoa(n.(int)))
 	}
 }
 
@@ -82,32 +82,32 @@ func TestNegIntSliceStdDev(t *testing.T) {
 func TestIntSliceMax(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Max")
 	n, _ := ints.Max()
-	if n != 935 {
-		t.Error("Max() not expected value of 935: " + strconv.Itoa(n))
+	if n.(int) != 935 {
+		t.Error("Max() not expected value of 935: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestIntSliceMaxNonZero(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for MaxNonZero")
 	n, _ := ints.MaxNonZero()
-	if n != 935 {
-		t.Error("MaxNonZero() not expected value of 935: " + strconv.Itoa(n))
+	if n.(int) != 935 {
+		t.Error("MaxNonZero() not expected value of 935: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestIntSliceMin(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Min")
 	n, _ := ints.Min()
-	if n != 0 {
-		t.Error("Min() not expected value of 0: " + strconv.Itoa(n))
+	if n.(int) != 0 {
+		t.Error("Min() not expected value of 0: " + strconv.Itoa(n.(int)))
 	}
 }
 
 func TestIntSliceMinNonZero(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for MinNonZero")
 	n, _ := ints.MinNonZero()
-	if n != 1 {
-		t.Error("MinNonZero() not expected value of 1: " + strconv.Itoa(n))
+	if n.(int) != 1 {
+		t.Error("MinNonZero() not expected value of 1: " + strconv.Itoa(n.(int)))
 	}
 }
 
@@ -122,8 +122,8 @@ func TestIntSliceAvg(t *testing.T) {
 func TestIntSliceSum(t *testing.T) {
 	t.Log("Testing: positive values IntSlice for Sum")
 	n := ints.Sum()
-	if n != 1132 {
-		t.Error("Sum() not expected value of 1132: " + strconv.Itoa(n))
+	if n.(int) != 1132 {
+		t.Error("Sum() not expected value of 1132: " + strconv.Itoa(n.(int)))
 	}
 }
 

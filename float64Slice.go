@@ -89,7 +89,7 @@ func (s *Float64Slice) IndexRight(j interface{}) int {
 }
 
 // Sum add all the values in the slice and returns the result.
-func (s *Float64Slice) Sum() float64 {
+func (s *Float64Slice) Sum() interface{} {
 	n := 0.0
 	for _, v := range *s {
 		n += v
@@ -104,11 +104,11 @@ func (s Float64Slice) Len() int {
 
 // Avg returns the average of all values in the slice.
 func (s *Float64Slice) Avg() float64 {
-	return s.Sum() / float64(s.Len())
+	return s.Sum().(float64) / float64(s.Len())
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
-func (s *Float64Slice) Min() (float64, int) {
+func (s *Float64Slice) Min() (interface{}, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -121,11 +121,11 @@ func (s *Float64Slice) Min() (float64, int) {
 }
 
 // MinNonZero returns the smallest non-zero value [n] in the slice along with its index [k].
-func (s *Float64Slice) MinNonZero() (float64, int) {
+func (s *Float64Slice) MinNonZero() (interface{}, int) {
 	n, _ := s.Max()
 	k := 0
 	for i, v := range *s {
-		if v < n && v != 0 {
+		if v < n.(float64) && v != 0 {
 			n = v
 			k = i
 		}
@@ -134,7 +134,7 @@ func (s *Float64Slice) MinNonZero() (float64, int) {
 }
 
 // Max returns the largest value [n] in the slice along with its index [k].
-func (s *Float64Slice) Max() (float64, int) {
+func (s *Float64Slice) Max() (interface{}, int) {
 	n := (*s)[0]
 	k := 0
 	for i, v := range *s {
@@ -148,11 +148,11 @@ func (s *Float64Slice) Max() (float64, int) {
 
 // MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
 // Intended for use with negative integers.
-func (s *Float64Slice) MaxNonZero() (float64, int) {
+func (s *Float64Slice) MaxNonZero() (interface{}, int) {
 	n, _ := s.Min()
 	k := 0
 	for i, v := range *s {
-		if v > n && v != 0 {
+		if v > n.(float64) && v != 0 {
 			n = v
 			k = i
 		}

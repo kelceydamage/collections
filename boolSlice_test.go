@@ -152,3 +152,22 @@ func TestBoolSliceSwap(t *testing.T) {
 		}
 	}
 }
+
+func TestBoolSliceAppend(t *testing.T) {
+	t.Log("Testing: BoolSlice for Append")
+	target := BoolSlice{true, false, true, false}
+	bools.Append(false)
+	for i := range bools {
+		if bools[i] != target[i] {
+			t.Error("Append() not expected values & positions")
+		}
+	}
+}
+
+func TestBoolSliceAppendFail(t *testing.T) {
+	t.Log("Testing: BoolSlice for Append")
+	err := bools.Append("cat")
+	if err == -1 {
+		t.Error("Append() not expected values & positions")
+	}
+}

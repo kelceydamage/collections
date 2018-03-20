@@ -287,3 +287,22 @@ func TestIntSliceSwap(t *testing.T) {
 		}
 	}
 }
+
+func TestIntSliceAppend(t *testing.T) {
+	t.Log("Testing: IntSlice for Append")
+	target := IntSlice{2, 4, 2, 5, 2}
+	ints.Append(2)
+	for i := range ints {
+		if ints[i] != target[i] {
+			t.Error("Append() not expected values & positions")
+		}
+	}
+}
+
+func TestIntSliceAppendFail(t *testing.T) {
+	t.Log("Testing: IntSlice for Append")
+	err := ints.Append("bob")
+	if err == -1 {
+		t.Error("Append() not expected values & positions")
+	}
+}

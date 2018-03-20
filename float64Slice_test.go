@@ -14,32 +14,32 @@ var negflts = Float64Slice{-1.0, -4.3, -2.5, -5.2, -6.567, -8.2, -935.342, -34.9
 func TestNegFloat64SliceMax(t *testing.T) {
 	t.Log("Testing: negative values Float64Slice for Max")
 	n, _ := negflts.Max()
-	if n != 0.0 {
-		t.Error("Max() not expected value of 0: " + strconv.FormatFloat(n, 'f', 2, 64))
+	if n.(float64) != 0.0 {
+		t.Error("Max() not expected value of 0: " + strconv.FormatFloat(n.(float64), 'f', 2, 64))
 	}
 }
 
 func TestNegFloat64SliceMaxNonZero(t *testing.T) {
 	t.Log("Testing: negative values Float64Slice for MaxNonZero")
 	n, _ := negflts.MaxNonZero()
-	if n != -1.0 {
-		t.Error("MaxNonZero() not expected value of -1: " + strconv.FormatFloat(n, 'f', 2, 64))
+	if n.(float64) != -1.0 {
+		t.Error("MaxNonZero() not expected value of -1: " + strconv.FormatFloat(n.(float64), 'f', 2, 64))
 	}
 }
 
 func TestNegFloat64SliceMin(t *testing.T) {
 	t.Log("Testing: negative values Float64Slice for Min")
 	n, _ := negflts.Min()
-	if n != -935.342 {
-		t.Error("Min() not expected value of -935.342: " + strconv.FormatFloat(n, 'f', 3, 64))
+	if n.(float64) != -935.342 {
+		t.Error("Min() not expected value of -935.342: " + strconv.FormatFloat(n.(float64), 'f', 3, 64))
 	}
 }
 
 func TestNegFloat64SliceMinNonZero(t *testing.T) {
 	t.Log("Testing: negative values Float64Slice for MinNonZero")
 	n, _ := negflts.MinNonZero()
-	if n != -935.342 {
-		t.Error("MinNonZero() not expected value of -935.342: " + strconv.FormatFloat(n, 'f', 3, 64))
+	if n.(float64) != -935.342 {
+		t.Error("MinNonZero() not expected value of -935.342: " + strconv.FormatFloat(n.(float64), 'f', 3, 64))
 	}
 }
 
@@ -54,8 +54,8 @@ func TestNegFloat64SliceAvg(t *testing.T) {
 func TestNegFloat64SliceSum(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for Sum")
 	n := negflts.Sum()
-	if n != -1136.78862 {
-		t.Error("Sum() not expected value of -1136.78862: " + strconv.FormatFloat(n, 'f', -1, 64))
+	if n.(float64) != -1136.78862 {
+		t.Error("Sum() not expected value of -1136.78862: " + strconv.FormatFloat(n.(float64), 'f', -1, 64))
 	}
 }
 
@@ -81,32 +81,32 @@ func TestNegFloat64SliceStdDev(t *testing.T) {
 func TestFloat64SliceMax(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for Max")
 	n, _ := flts.Max()
-	if n != 935.342 {
-		t.Error("Max() not expected value of 935.342: " + strconv.FormatFloat(n, 'f', -1, 64))
+	if n.(float64) != 935.342 {
+		t.Error("Max() not expected value of 935.342: " + strconv.FormatFloat(n.(float64), 'f', -1, 64))
 	}
 }
 
 func TestFloat64SliceMaxNonZero(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for MaxNonZero")
 	n, _ := flts.MaxNonZero()
-	if n != 935.342 {
-		t.Error("MaxNonZero() not expected value of 935.342: " + strconv.FormatFloat(n, 'f', -1, 64))
+	if n.(float64) != 935.342 {
+		t.Error("MaxNonZero() not expected value of 935.342: " + strconv.FormatFloat(n.(float64), 'f', -1, 64))
 	}
 }
 
 func TestFloat64SliceMin(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for Min")
 	n, _ := flts.Min()
-	if n != 0.0 {
-		t.Error("Min() not expected value of 0.0: " + strconv.FormatFloat(n, 'f', 3, 64))
+	if n.(float64) != 0.0 {
+		t.Error("Min() not expected value of 0.0: " + strconv.FormatFloat(n.(float64), 'f', 3, 64))
 	}
 }
 
 func TestFloat64SliceMinNonZero(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for MinNonZero")
 	n, _ := flts.MinNonZero()
-	if n != 1.0 {
-		t.Error("MinNonZero() not expected value of 1.0: " + strconv.FormatFloat(n, 'f', 3, 64))
+	if n.(float64) != 1.0 {
+		t.Error("MinNonZero() not expected value of 1.0: " + strconv.FormatFloat(n.(float64), 'f', 3, 64))
 	}
 }
 
@@ -121,8 +121,8 @@ func TestFloat64SliceAvg(t *testing.T) {
 func TestFloat64SliceSum(t *testing.T) {
 	t.Log("Testing: positive values Float64Slice for Sum")
 	n := flts.Sum()
-	if n != 1136.78862 {
-		t.Error("Sum() not expected value of 1136.78862: " + strconv.FormatFloat(n, 'f', -1, 64))
+	if n.(float64) != 1136.78862 {
+		t.Error("Sum() not expected value of 1136.78862: " + strconv.FormatFloat(n.(float64), 'f', -1, 64))
 	}
 }
 

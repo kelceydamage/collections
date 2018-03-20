@@ -50,14 +50,14 @@ type Slice interface {
 // NumSlice interface extends Slice with basic math functions.
 type NumSlice interface {
 	Slice
-	Sum() float64
+	Sum() interface{}
 	Avg() float64
-	Max() interface{}
-	MaxNonZero() interface{}
-	Min() interface{}
-	MinNonZero() interface{}
+	Max() (interface{}, int)
+	MaxNonZero() (interface{}, int)
+	Min() (interface{}, int)
+	MinNonZero() (interface{}, int)
 	StdDev() float64
-	Varaince() float64
+	Variance() float64
 }
 
 // Swap is a function interface for the Swap method on collections slices.

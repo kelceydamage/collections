@@ -44,7 +44,6 @@
 package collections
 
 import (
-	"fmt"
 	"math"
 	"sort"
 )
@@ -240,7 +239,6 @@ func (s *Float64Slice) Mirror() {
 
 // Append will add a value of type float64, into the Float64Slice.
 func (s *Float64Slice) Append(j interface{}) int {
-	fmt.Println("float")
 	_, err := j.(float64)
 	if !err {
 		return -1

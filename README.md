@@ -110,10 +110,10 @@ type NumSlice interface {
 	Slice
 	Sum() float64
 	Avg() float64
-	Max() interface{}
-	MaxNonZero() interface{}
-	Min() interface{}
-	MinNonZero() interface{}
+	Max() (interface{}, int)
+	MaxNonZero() (interface{}, int)
+	Min() (interface{}, int)
+	MinNonZero() (interface{}, int)
 	StdDev() float64
 	Varaince() float64
 }

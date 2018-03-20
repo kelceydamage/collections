@@ -240,7 +240,6 @@ func (s *IntSlice) Mirror() {
 
 // Append will add a value of type int, into the Intslice.
 func (s *IntSlice) Append(j interface{}) int {
-	fmt.Println("int")
 	_, err := j.(int)
 	if !err {
 		return -1

@@ -34,6 +34,13 @@ type Float64Slice struct {
 	slice
 }
 
+// New instantiates a new Float64Slice based on the passed slice.
+func (s *Float64Slice) New(x slice) Float64Slice {
+	i := Float64Slice{}
+	i.slice = x
+	return i
+}
+
 // Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.

@@ -40,6 +40,14 @@ func TestSliceSet(t *testing.T) {
 	}
 }
 
+func TestSliceGet(t *testing.T) {
+	t.Log("Testing: Get values slice")
+	n := ints.Get(2)
+	if n.(int) != 2 {
+		t.Error("Get() not expected value of 2: " + strconv.Itoa(n.(int)))
+	}
+}
+
 func TestSliceAppend(t *testing.T) {
 	t.Log("Testing: Append values slice")
 	ints.Append(2)
@@ -132,10 +140,26 @@ func TestSliceIndex(t *testing.T) {
 	}
 }
 
+func TestSliceIndexFail(t *testing.T) {
+	t.Log("Testing: IndexFail values slice")
+	n := ints.Index(33)
+	if n != -1 {
+		t.Error("IndexFail() not expected value of -1: " + strconv.Itoa(n))
+	}
+}
+
 func TestSliceIndexRight(t *testing.T) {
 	t.Log("Testing: IndexRight values slice")
 	n := ints.IndexRight(4)
 	if n != 2 {
 		t.Error("IndexRight() not expected value of 2: " + strconv.Itoa(n))
+	}
+}
+
+func TestSliceIndexRightFail(t *testing.T) {
+	t.Log("Testing: IndexRightFail values slice")
+	n := ints.IndexRight(33)
+	if n != -1 {
+		t.Error("IndexRightFail() not expected value of -1: " + strconv.Itoa(n))
 	}
 }

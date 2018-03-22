@@ -22,5 +22,57 @@
 
 package collections
 
-// Code
-//-------------------------------------------------------------------------------------------------- <-100
+import (
+	"testing"
+)
+
+var f = Float64Slice{}
+
+var testFloats = f.New(slice{0.0, 1.5, 4.0, 2.4, -5.6, 6.2, -18.33})
+
+// IntSlice tests with negative integers
+//---------------------------------------------------------------------------------------------------- <-100
+
+func TestFloat64SliceNew(t *testing.T) {
+	t.Log("Testing: New values slice")
+	target := slice{0.0, 1.5, 4.0, 2.4, -5.6, 6.2, -18.33}
+	newFloats := testFloats.New(slice{0.0, 1.5, 4.0, 2.4, -5.6, 6.2, -18.33})
+	for i := range newFloats.All() {
+		if newFloats.All()[i] != target[i] {
+			t.Error("New() order and content not as expected")
+		}
+	}
+}
+
+func TestFloat64SliceSort(t *testing.T) {
+	t.Log("Testing: Sort values slice")
+	target := slice{-18.33, -5.6, 0.0, 1.5, 2.4, 4.0, 6.2}
+	testFloats.Sort()
+	for i := range testFloats.All() {
+		if testFloats.All()[i] != target[i] {
+			t.Error("Sort() order and content not as expected")
+		}
+	}
+}
+
+func TestFloat64SliceReverse(t *testing.T) {
+	t.Log("Testing: Reverse values slice")
+	target := slice{6.2, 4.0, 2.4, 1.5, 0.0, -5.6, -18.33}
+	testFloats.Reverse()
+	for i := range testFloats.All() {
+		if testFloats.All()[i] != target[i] {
+			t.Error("Reverse() order and content not as expected")
+		}
+	}
+}
+
+func TestFloat64SliceSlice(t *testing.T) {
+	t.Log("Testing: Slice values slice")
+	target := slice{4.0, 2.4, 1.5, 0.0}
+	newFloats := testFloats.Slice(1, 4)
+	for i := range newFloats.All() {
+		if newFloats.All()[i] != target[i] {
+			t.Error("Slice() order and content not as expected")
+		}
+	}
+}

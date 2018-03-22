@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------------------------------- <-100
+//-------------------------------------------------------------------------------------------------- <-100
 // Author: Kelcey Damage
 // Go: 1.10
 
@@ -15,16 +15,17 @@
 // limitations under the License.
 
 // Doc
-//---------------------------------------------------------------------------------------------------- <-100
+//-------------------------------------------------------------------------------------------------- <-100
 
-//---------------------------------------------------------------------------------------------------- <-100
+// Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
+//-------------------------------------------------------------------------------------------------- <-100
 
 package collections
 
 // Code
-//---------------------------------------------------------------------------------------------------- <-100
+//-------------------------------------------------------------------------------------------------- <-100
 
-// IntQueue ...
+// IntQueue is a queue type specifically for ints.
 type IntQueue struct {
 	queue
 }
@@ -36,7 +37,7 @@ func (q IntQueue) New(w int) IntQueue {
 	return newQ
 }
 
-// Get returns the oldest element in the queue.
+// Get returns the element at the given index.
 func (q *IntQueue) Get(n int) int {
 	return (*q).get(n).(int)
 }
@@ -65,6 +66,7 @@ func (q *IntQueue) Buffer(n int) (int, bool) {
 	return v.(int), ok
 }
 
+// All returns the objects within the Stack as a slice
 func (q *IntQueue) All() IntSlice {
 	return q.all().(IntSlice)
 }

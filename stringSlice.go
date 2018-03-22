@@ -34,6 +34,13 @@ type StringSlice struct {
 	slice
 }
 
+// New instantiates a new StringSlice based on the passed slice.
+func (s *StringSlice) New(x slice) StringSlice {
+	i := StringSlice{}
+	i.slice = x
+	return i
+}
+
 // Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
@@ -60,4 +67,9 @@ type strSliceAsc struct{ StringSlice }
 // Less implementation for sort. Return true if value at index [i] is less then value at index [j].
 func (s strSliceAsc) Less(i, j int) bool {
 	return s.StringSlice.All()[i].(string) < s.StringSlice.All()[j].(string)
+}
+
+// Slice returns a new slice with the range of data between indexes [i] and [j] int the original.
+func (s *StringSlice) Slice(i, j int) StringSlice {
+	return StringSlice{(*s).All()[i:j]}
 }

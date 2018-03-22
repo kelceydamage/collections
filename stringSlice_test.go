@@ -1,171 +1,26 @@
+//-------------------------------------------------------------------------------------------------- <-100
+// Author: Kelcey Damage
+// Go: 1.10
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+//    http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Doc
+//-------------------------------------------------------------------------------------------------- <-100
+
+// Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
+//-------------------------------------------------------------------------------------------------- <-100
+
 package collections
 
-import (
-	"strconv"
-	"testing"
-)
-
-var strs = StringSlice{"hi", "how", "are", "you", "hello", "world", "kitty", "cat"}
-
-// BoolSlice tests
+// Code
 //-------------------------------------------------------------------------------------------------- <-100
-func TestStringSliceIndex(t *testing.T) {
-	t.Log("Testing: StringSlice for Index")
-	n := strs.Index("hello")
-	if n != 4 {
-		t.Error("Index() not expected value of 4: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceIndexFail(t *testing.T) {
-	t.Log("Testing: StringSlice for Index failure")
-	n := strs.Index("fred")
-	if n != -1 {
-		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceIndexFail2(t *testing.T) {
-	t.Log("Testing: IntSlice for Index")
-	n := strs.Index(22)
-	if n != -1 {
-		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceIndexRight(t *testing.T) {
-	t.Log("Testing: StringSlice for IndexRight")
-	n := strs.IndexRight("you")
-	if n != 3 {
-		t.Error("IndexRight() not expected value of 3: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceIndexRightFail(t *testing.T) {
-	t.Log("Testing: StringSlice for IndexRight failure")
-	n := strs.IndexRight("fred")
-	if n != -1 {
-		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceIndexRightFail2(t *testing.T) {
-	t.Log("Testing: IntSlice for IndexRight")
-	n := strs.IndexRight(22)
-	if n != -1 {
-		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceLen(t *testing.T) {
-	t.Log("Testing: StringSlice for Len")
-	n := strs.Len()
-	if n != 8 {
-		t.Error("Len() not expected value of 8: " + strconv.Itoa(n))
-	}
-}
-
-func TestStringSliceSort(t *testing.T) {
-	t.Log("Testing: StringSlice for Sort ascending")
-	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
-	strs.Sort()
-	t.Log("Strings: ", strs)
-	t.Log("Target: ", sorted)
-	for i := range strs {
-		if strs[i] != sorted[i] {
-			t.Error("Sort() order not as expected, ascending")
-		}
-	}
-}
-
-func TestStringSliceReverse(t *testing.T) {
-	t.Log("Testing: StringSlice for Sort descending")
-	sorted := StringSlice{"you", "world", "kitty", "how", "hi", "hello", "cat", "are"}
-	strs.Reverse()
-	t.Log("Strings: ", strs)
-	t.Log("Target: ", sorted)
-	for i := range strs {
-		if strs[i] != sorted[i] {
-			t.Error("Reverse() order not as expected, descending")
-		}
-	}
-}
-
-func TestStringSliceMirror(t *testing.T) {
-	t.Log("Testing: StringSlice for Mirror")
-	sorted := StringSlice{"are", "cat", "hello", "hi", "how", "kitty", "world", "you"}
-	strs.Mirror()
-	t.Log("Strings: ", strs)
-	t.Log("Target: ", sorted)
-	for i := range strs {
-		if strs[i] != sorted[i] {
-			t.Error("Mirror() element positions do not match expected positions")
-		}
-	}
-}
-
-func TestStringSliceTruncateLeft(t *testing.T) {
-	t.Log("Testing: StringSlice for TruncateLeft")
-	target := StringSlice{"are", "cat", "hello", "hi", "how", "kitty"}
-	strs.TruncateLeft(6)
-	if strs.Len() != 6 {
-		t.Error("TruncateLeft() not expected value length of 6: " + strconv.Itoa(strs.Len()))
-	}
-	for i := range strs {
-		if strs[i] != target[i] {
-			t.Error("TruncateLeft() not expected values & positions")
-		}
-	}
-}
-
-func TestStringSliceTruncateRight(t *testing.T) {
-	t.Log("Testing: StringSlice for TruncateRight")
-	target := StringSlice{"hello", "hi", "how", "kitty"}
-	strs.TruncateRight(4)
-	if strs.Len() != 4 {
-		t.Error("TruncateRight() not expected value length of 4: " + strconv.Itoa(strs.Len()))
-	}
-	for i := range strs {
-		if strs[i] != target[i] {
-			t.Error("TruncateRight() not expected values & positions")
-		}
-	}
-}
-
-func TestStringSliceLess(t *testing.T) {
-	t.Log("Testing: StringSlice for Less")
-	n := strs.Less(1, 2)
-	if n != true {
-		t.Error("Less() not expected value of true: " + strconv.FormatBool(n))
-	}
-}
-
-func TestStringSliceSwap(t *testing.T) {
-	t.Log("Testing: StringSlice for Swap")
-	target := StringSlice{"hello", "how", "hi", "kitty"}
-	strs.Swap(1, 2)
-	for i := range strs {
-		if strs[i] != target[i] {
-			t.Error("Swap() not expected values & positions")
-		}
-	}
-}
-
-func TestStringSliceAppend(t *testing.T) {
-	t.Log("Testing: StringSlice for Append")
-	target := StringSlice{"hello", "how", "hi", "kitty", "cat"}
-	strs.Append("cat")
-	for i := range strs {
-		if strs[i] != target[i] {
-			t.Error("Append() not expected values & positions")
-		}
-	}
-}
-
-func TestStringSliceAppendFail(t *testing.T) {
-	t.Log("Testing: StringSlice for Append")
-	err := strs.Append(20)
-	if err != -1 {
-		t.Error("Append() not expected value length of -1")
-	}
-}

@@ -1,176 +1,26 @@
+//-------------------------------------------------------------------------------------------------- <-100
+// Author: Kelcey Damage
+// Go: 1.10
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+//    http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Doc
+//-------------------------------------------------------------------------------------------------- <-100
+
+// Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
+//-------------------------------------------------------------------------------------------------- <-100
+
 package collections
 
-import (
-	"strconv"
-	"testing"
-)
-
-var bools = BoolSlice{true, true, false, true, false, false, false, true}
-
-// BoolSlice tests
+// Code
 //-------------------------------------------------------------------------------------------------- <-100
-func TestBoolSliceIndex(t *testing.T) {
-	t.Log("Testing: BoolSlice for Index")
-	n := bools.Index(false)
-	if n != 2 {
-		t.Error("Index() not expected value of 2: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceIndexFail(t *testing.T) {
-	target := BoolSlice{false, false, false}
-	t.Log("Testing: BoolSlice for Index failure")
-	n := target.Index(true)
-	if n != -1 {
-		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceSliceIndexFail2(t *testing.T) {
-	t.Log("Testing: BoolSlice for IndexRight")
-	n := bools.Index("ted")
-	if n != -1 {
-		t.Error("Index() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceIndexRight(t *testing.T) {
-	t.Log("Testing: BoolSlice for index")
-	n := bools.IndexRight(false)
-	if n != 6 {
-		t.Error("IndexRight() not expected value of 6: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceIndexRightFail(t *testing.T) {
-	target := BoolSlice{false, false, false}
-	t.Log("Testing: BoolSlice for IndexRight failure")
-	n := target.IndexRight(true)
-	if n != -1 {
-		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceSliceIndexRightFail2(t *testing.T) {
-	t.Log("Testing: FloatBoolSlice64Slice for IndexRight")
-	n := bools.IndexRight("ted")
-	if n != -1 {
-		t.Error("IndexRight() not expected value of -1: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceLen(t *testing.T) {
-	t.Log("Testing: BoolSlice for Len")
-	n := bools.Len()
-	if n != 8 {
-		t.Error("Len() not expected value of 8: " + strconv.Itoa(n))
-	}
-}
-
-func TestBoolSliceSort(t *testing.T) {
-	t.Log("Testing: BoolSlice for Sort true-first")
-	sorted := BoolSlice{true, true, true, true, false, false, false, false}
-	bools.Sort()
-	t.Log("Bools: ", bools)
-	t.Log("Target: ", sorted)
-	for i := range bools {
-		if bools[i] != sorted[i] {
-			t.Error("Sort() order not as expected, true before false")
-		}
-	}
-}
-
-func TestBoolSliceReverse(t *testing.T) {
-	t.Log("Testing: BoolSlice for Sort false-first")
-	sorted := BoolSlice{false, false, false, false, true, true, true, true}
-	bools.Reverse()
-	t.Log("Bools: ", bools)
-	t.Log("Target: ", sorted)
-	for i := range bools {
-		if bools[i] != sorted[i] {
-			t.Error("Reverse() order not as expected, false before true")
-		}
-	}
-}
-
-func TestBoolSliceMirror(t *testing.T) {
-	t.Log("Testing: BoolSlice for Mirror")
-	sorted := BoolSlice{true, true, true, true, false, false, false, false}
-	bools.Mirror()
-	t.Log("Bools: ", bools)
-	t.Log("Target: ", sorted)
-	for i := range bools {
-		if bools[i] != sorted[i] {
-			t.Error("Mirror() element positions do not match expected positions")
-		}
-	}
-}
-
-func TestBoolSliceTruncateLeft(t *testing.T) {
-	t.Log("Testing: BoolSlice for TruncateLeft")
-	target := BoolSlice{true, true, true, true, false, false}
-	bools.TruncateLeft(6)
-	if bools.Len() != 6 {
-		t.Error("TruncateLeft() not expected value length of 6: " + strconv.Itoa(bools.Len()))
-	}
-	for i := range bools {
-		if bools[i] != target[i] {
-			t.Error("TruncateLeft() not expected values & positions")
-		}
-	}
-}
-
-func TestBoolSliceTruncateRight(t *testing.T) {
-	t.Log("Testing: BoolSlice for TruncateRight")
-	target := BoolSlice{true, true, false, false}
-	bools.TruncateRight(4)
-	if bools.Len() != 4 {
-		t.Error("TruncateRight() not expected value length of 4: " + strconv.Itoa(bools.Len()))
-	}
-	for i := range bools {
-		if bools[i] != target[i] {
-			t.Error("TruncateRight() not expected values & positions")
-		}
-	}
-}
-
-func TestBoolSliceLess(t *testing.T) {
-	t.Log("Testing: BoolSlice for Less")
-	n := bools.Less(1, 2)
-	if n != true {
-		t.Error("Less() not expected value of true: " + strconv.FormatBool(n))
-	}
-}
-
-func TestBoolSliceSwap(t *testing.T) {
-	t.Log("Testing: BoolSlice for Swap")
-	target := BoolSlice{true, false, true, false}
-	bools.Swap(1, 2)
-	for i := range bools {
-		if bools[i] != target[i] {
-			t.Error("Swap() not expected values & positions")
-		}
-	}
-}
-
-func TestBoolSliceAppend(t *testing.T) {
-	t.Log("Testing: BoolSlice for Append")
-	target := BoolSlice{true, false, true, false, false}
-	bools.Append(false)
-	if bools.Len() != target.Len() {
-		t.Error("Append() length missmatch")
-	}
-	for i := range bools {
-		if bools[i] != target[i] {
-			t.Error("Append() not expected values & positions")
-		}
-	}
-}
-
-func TestBoolSliceAppendFail(t *testing.T) {
-	t.Log("Testing: BoolSlice for Append")
-	err := bools.Append("cat")
-	if err != -1 {
-		t.Error("Append() not expected value length of -1")
-	}
-}

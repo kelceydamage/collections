@@ -51,7 +51,7 @@ func (e slice) Swap(i, j int) {
 
 // TruncateLeft shrinks the slice to [n] amount of float64s starting from the left.
 func (e *slice) TruncateLeft(n int) {
-	if n != -1 && n <= len((*e)) {
+	if n != -1 && n <= (*e).Len() {
 		(*e) = (*e)[:n]
 	}
 }

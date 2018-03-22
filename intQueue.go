@@ -24,22 +24,12 @@ package collections
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
-type Queue interface {
-	Pop() (interface{}, bool)
-	New(int) Queue
-	Buffer(interface{}) (interface{}, bool)
-	All() []interface{}
-}
-
 // IntQueue ...
 type IntQueue struct {
 	queue
 }
 
-func New(q Queue, w int) Queue {
-	return q.New(w)
-}
-
+// New returna a new IntQueue of [w] depth
 func (q IntQueue) New(w int) IntQueue {
 	newQ := IntQueue{}
 	newQ.Depth = w
@@ -47,30 +37,30 @@ func (q IntQueue) New(w int) IntQueue {
 }
 
 // Get returns the oldest element in the queue.
-func (q *queue) Get(n int) int {
+func (q *IntQueue) Get(n int) int {
 	return (*q).get(n).(int)
 }
 
 // Pop removes the oldest element in the list and returns it.
-func (q *queue) Pop() (int, bool) {
+func (q *IntQueue) Pop() (int, bool) {
 	v, ok := q.pop()
 	return v.(int), ok
 }
 
 // Put inserts an element into the queue provided there is room.
-func (q *queue) Put(n int) {
+func (q *IntQueue) Put(n int) {
 	q.put(n)
 }
 
 // Cycle inserts an element while popping and returning the oldest element at the same time.
-func (q *queue) Cycle(n int) (int, bool) {
+func (q *IntQueue) Cycle(n int) (int, bool) {
 	v, ok := q.cycle(n)
 	return v.(int), ok
 }
 
 // Buffer will fill upt the queue returning nil. once the queue is full, it will start
 // popping the oldest element and return it.
-func (q *queue) Buffer(n int) (int, bool) {
+func (q *IntQueue) Buffer(n int) (int, bool) {
 	v, ok := q.buffer(n)
 	return v.(int), ok
 }

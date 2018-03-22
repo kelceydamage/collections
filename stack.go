@@ -24,6 +24,7 @@ package collections
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
+// stack is a LIFO style queue.
 type stack struct {
 	Content Slice
 	Depth   int
@@ -45,6 +46,7 @@ func (q *stack) pop() (interface{}, bool) {
 	return v, true
 }
 
+// Internal method to facilitate force().
 func (q *stack) popLeft() (interface{}, bool) {
 	if q.Content.Len() == 0 {
 		return -1, false
@@ -62,6 +64,7 @@ func (q *stack) put(x interface{}) {
 	}
 }
 
+// Force inserts an element into the queue and poplefts an element if there is no space.
 func (q *stack) force(x interface{}) {
 	l := (*q).Content.Len()
 	if l == (*q).Depth {
@@ -70,6 +73,7 @@ func (q *stack) force(x interface{}) {
 	(*q).Content.Append(x)
 }
 
+// All returns the objects within the Stack as a slice
 func (q *stack) all() interface{} {
 	return q.Content.All()
 }

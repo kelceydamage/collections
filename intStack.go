@@ -24,6 +24,40 @@ package collections
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
+// IntStack is a stack type specifically for ints.
 type IntStack struct {
 	stack
+}
+
+// New returna a new IntStack of [w] depth
+func (q IntStack) New(w int) IntStack {
+	newQ := IntStack{}
+	newQ.Depth = w
+	return newQ
+}
+
+// Get returns the element at the given index.
+func (q *IntStack) Get(n int) int {
+	return (*q).get(n).(int)
+}
+
+// Pop removes the newest element in the stack and returns it.
+func (q *IntStack) Pop() (int, bool) {
+	v, ok := q.pop()
+	return v.(int), ok
+}
+
+// Put inserts an element onto the top of the stack, provided there is room.
+func (q *IntStack) Put(n int) {
+	q.put(n)
+}
+
+// Force inserts an element into the queue and poplefts an element if there is no space.
+func (q *IntStack) Force(n int) {
+	q.force(n)
+}
+
+// All returns the objects within the Stack as a slice
+func (q *IntStack) All() IntSlice {
+	return q.all().(IntSlice)
 }

@@ -24,6 +24,7 @@ package collections
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
+// queue is a FIFO type of queue.
 type queue struct {
 	Content Slice
 	Depth   int
@@ -70,6 +71,7 @@ func (q *queue) buffer(x interface{}) (interface{}, bool) {
 	return -1, false
 }
 
+// All returns the objects within the Stack as a slice
 func (q *queue) all() interface{} {
 	return q.Content.All()
 }

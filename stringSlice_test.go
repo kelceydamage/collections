@@ -22,5 +22,57 @@
 
 package collections
 
-// Code
-//-------------------------------------------------------------------------------------------------- <-100
+import (
+	"testing"
+)
+
+var s = StringSlice{}
+
+var testStrings = s.New(slice{"fred", "bob", "al", "ron", "ted"})
+
+// IntSlice tests with negative integers
+//---------------------------------------------------------------------------------------------------- <-100
+
+func TestStringSliceNew(t *testing.T) {
+	t.Log("Testing: New values slice")
+	target := slice{"fred", "bob", "al", "ron", "ted", "rob"}
+	newStrings := testStrings.New(slice{"fred", "bob", "al", "ron", "ted", "rob"})
+	for i := range newStrings.All() {
+		if newStrings.All()[i] != target[i] {
+			t.Error("New() order and content not as expected")
+		}
+	}
+}
+
+func TestStringSliceSort(t *testing.T) {
+	t.Log("Testing: Sort values slice")
+	target := slice{"al", "bob", "fred", "ron", "ted"}
+	testStrings.Sort()
+	for i := range testStrings.All() {
+		if testStrings.All()[i] != target[i] {
+			t.Error("Sort() order and content not as expected")
+		}
+	}
+}
+
+func TestStringSliceReverse(t *testing.T) {
+	t.Log("Testing: Reverse values slice")
+	target := slice{"ted", "ron", "fred", "bob", "al"}
+	testStrings.Reverse()
+	for i := range testStrings.All() {
+		if testStrings.All()[i] != target[i] {
+			t.Error("Reverse() order and content not as expected")
+		}
+	}
+}
+
+func TestStringSliceSlice(t *testing.T) {
+	t.Log("Testing: Slice values slice")
+	target := slice{"ron", "fred", "bob"}
+	newStrings := testStrings.Slice(1, 4)
+	for i := range newStrings.All() {
+		if newStrings.All()[i] != target[i] {
+			t.Error("Slice() order and content not as expected")
+		}
+	}
+}

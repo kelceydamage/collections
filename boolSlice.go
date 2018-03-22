@@ -15,22 +15,7 @@
 // limitations under the License.
 
 // Doc
-//---------------------------------------------------------------------------------------------------- <-100
-
-// Struct Type:
-//  BoolSlice
-//
-// Struct Methods:
-//  len()
-//  Index(string)
-//  IndexRight(string)
-//  Sort()
-//  Swap(i, j)
-//  Less(i, j)
-//  TruncateLeft(int)
-//  TruncateRight(int)
-//  Reverse()
-//  Mirror()
+//-------------------------------------------------------------------------------------------------- <-100
 
 // Doc (90 char length for optimal godoc code-block parsing)                              | <- 90
 //-------------------------------------------------------------------------------------------------- <-100
@@ -44,46 +29,9 @@ import (
 // Code
 //-------------------------------------------------------------------------------------------------- <-100
 
-// BoolSlice is a slice off string with common methods.
-type BoolSlice []bool
-
-// Index retrives the first index [i] from the left, for the provided value [j] (bool).
-// Returns -1 if index not found.
-func (s *BoolSlice) Index(j interface{}) int {
-	_, err := j.(bool)
-	if !err {
-		return -1
-	}
-	for i, v := range *s {
-		if v == j {
-			return i
-		}
-	}
-	return -1
-}
-
-// IndexRight retrives the first index [i] from the right, for the provided value [j] (bool).
-// Returns -1 if index not found.
-func (s *BoolSlice) IndexRight(j interface{}) int {
-	_, err := j.(bool)
-	if !err {
-		return -1
-	}
-	k := -1
-	for i, v := range *s {
-		if v == j {
-			k = i
-		}
-	}
-	if k == -1 {
-		return k
-	}
-	return k
-}
-
-// Len returns the length of the slice
-func (s BoolSlice) Len() int {
-	return len(s)
+// BoolSlice is a slice of booleans with common methods.
+type BoolSlice struct {
+	slice
 }
 
 // Sort inplace sorts the slice ascending.
@@ -101,44 +49,8 @@ func (s *BoolSlice) Reverse() {
 	s.Mirror()
 }
 
-// Swap implementation for general sort. This will swap the position of 2 items in the slice.
-func (s BoolSlice) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
-}
-
 // Less implementation for sort. Return true if value at index [i] not equal to [j]. This will sort
 // the slice so that all true booleans appear before false booleans.
 func (s BoolSlice) Less(i, j int) bool {
-	return s[i] != s[j]
-}
-
-// TruncateLeft shrinks the slice to [n] amount of bools starting from the left.
-func (s *BoolSlice) TruncateLeft(n int) {
-	if n != -1 && n <= len((*s)) {
-		(*s) = (*s)[:n]
-	}
-}
-
-// TruncateRight shrinks the slice to [n] amount of bools starting from the right.
-func (s *BoolSlice) TruncateRight(n int) {
-	if n != -1 && n <= len((*s)) {
-		(*s) = (*s)[(*s).Len()-n:]
-	}
-}
-
-// Mirror will swap the order of bools in the slice.
-func (s *BoolSlice) Mirror() {
-	for i, j := 0, len((*s))-1; i < j; i, j = i+1, j-1 {
-		(*s)[i], (*s)[j] = (*s)[j], (*s)[i]
-	}
-}
-
-// Append will add a value of type bool, into the BoolSlice.
-func (s *BoolSlice) Append(j interface{}) int {
-	_, err := j.(bool)
-	if !err {
-		return -1
-	}
-	(*s) = append((*s), j.(bool))
-	return 0
+	return s.All()[i].(bool) != s.All()[j].(bool)
 }

@@ -34,6 +34,13 @@ type IntSlice struct {
 	slice
 }
 
+// New instantiates a new IntSlice based on the passed slice.
+func (s *IntSlice) New(x slice) IntSlice {
+	i := IntSlice{}
+	i.slice = x
+	return i
+}
+
 // Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.

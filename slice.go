@@ -25,16 +25,25 @@ package collections
 // Code
 //-------------------------------------------------------------------------------------------------- <-100
 
+// slice is the base slice type.
 type slice []interface{}
 
+// Set initial values for the slice.
+func (e *slice) Set(x slice) {
+	(*e) = x
+}
+
+// Append new values to the slice.
 func (e *slice) Append(x interface{}) {
 	(*e) = append((*e), x)
 }
 
+// All returns the contents of the slice
 func (e *slice) All() []interface{} {
 	return (*e)
 }
 
+// Overwrite the contents of the slice. Essentially the same as Set() fo now.
 func (e *slice) Overwrite(x interface{}) {
 	(*e) = x.(slice)
 }

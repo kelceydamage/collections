@@ -30,7 +30,7 @@ import (
 
 // IntSlice is a slice of ints with common methods.
 type IntSlice struct {
-	IfaceSlice
+	slice
 }
 
 // Sort inplace sorts the slice ascending.

@@ -17,28 +17,6 @@
 // Doc
 //---------------------------------------------------------------------------------------------------- <-100
 
-// Struct Type:
-//  IntSlice
-//
-// Struct Methods:
-//  Avg()
-//  Min()
-//  MinNonZero()
-//  Max()
-//  MaxNonZero()
-//  Index(int)
-//  IndexRight(int)
-//  Sum()
-//  Variance()
-//  StdDev()
-//  Sort()
-//  Swap(i, j)
-//  Less(i, j)
-//  TruncateLeft(int)
-//  TruncateRight(int)
-//  Reverse()
-//  Mirror()
-
 //---------------------------------------------------------------------------------------------------- <-100
 
 package collections
@@ -50,46 +28,46 @@ import (
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
-// IntSliceM is a higher level slice for ints that includes math functions.
-type IntSliceM struct {
-	IntSlice
+// Float64SliceM is a higher level slice for float64 that includes math functions.
+type Float64SliceM struct {
+	Float64Slice
 }
 
 // Sum add all the values in the slice and returns the result.
-func (s *IntSliceM) Sum() int {
-	n := 0
+func (s *Float64SliceM) Sum() float64 {
+	n := 0.0
 	for _, v := range (*s).All() {
-		n += v.(int)
+		n += v.(float64)
 	}
 	return n
 }
 
-// Avg returns the average of all values in the slice. Expressed as a float64
-func (s *IntSliceM) Avg() float64 {
-	return float64(s.Sum()) / float64(s.Len())
+// Avg returns the average of all values in the slice.
+func (s *Float64SliceM) Avg() float64 {
+	return s.Sum() / float64(s.Len())
 }
 
 // AvgNonZero the average of all values in the slice not accounting for zero values.
 // Expressed as a float64
-func (s *IntSliceM) AvgNonZero() float64 {
-	c := 0
+func (s *Float64SliceM) AvgNonZero() float64 {
+	c := 0.0
 	l := 1
 	for _, v := range (*s).All() {
-		if v.(int) != 0 {
-			c += v.(int)
+		if v.(float64) != 0 {
+			c += v.(float64)
 			l++
 		}
 	}
-	return float64(c) / float64(l)
+	return c / float64(l)
 }
 
 // Min returns the smallest value [n] in the slice along with its index [k].
-func (s *IntSliceM) Min() (int, int) {
-	n := (*s).All()[0].(int)
+func (s *Float64SliceM) Min() (float64, int) {
+	n := (*s).All()[0].(float64)
 	k := 0
 	for i, v := range (*s).All() {
-		if v.(int) < n {
-			n = v.(int)
+		if v.(float64) < n {
+			n = v.(float64)
 			k = i
 		}
 	}
@@ -97,12 +75,12 @@ func (s *IntSliceM) Min() (int, int) {
 }
 
 // MinNonZero returns the smallest non-zero value [n] in the slice along with its index [k].
-func (s *IntSliceM) MinNonZero() (int, int) {
+func (s *Float64SliceM) MinNonZero() (float64, int) {
 	n, _ := s.Max()
 	k := 0
 	for i, v := range (*s).All() {
-		if v.(int) < n && v.(int) != 0 {
-			n = v.(int)
+		if v.(float64) < n && v.(float64) != 0 {
+			n = v.(float64)
 			k = i
 		}
 	}
@@ -110,12 +88,12 @@ func (s *IntSliceM) MinNonZero() (int, int) {
 }
 
 // Max returns the largest value [n] in the slice along with its index [k].
-func (s *IntSliceM) Max() (int, int) {
-	n := (*s).All()[0].(int)
+func (s *Float64SliceM) Max() (float64, int) {
+	n := (*s).All()[0].(float64)
 	k := 0
 	for i, v := range (*s).All() {
-		if v.(int) > n {
-			n = v.(int)
+		if v.(float64) > n {
+			n = v.(float64)
 			k = i
 		}
 	}
@@ -124,12 +102,12 @@ func (s *IntSliceM) Max() (int, int) {
 
 // MaxNonZero returns the largest non-zero value [n] in the slice along with its index [k].
 // Intended for use with negative integers.
-func (s *IntSliceM) MaxNonZero() (int, int) {
+func (s *Float64SliceM) MaxNonZero() (float64, int) {
 	n, _ := s.Min()
 	k := 0
 	for i, v := range (*s).All() {
-		if v.(int) > n && v.(int) != 0 {
-			n = v.(int)
+		if v.(float64) > n && v.(float64) != 0 {
+			n = v.(float64)
 			k = i
 		}
 	}
@@ -137,11 +115,11 @@ func (s *IntSliceM) MaxNonZero() (int, int) {
 }
 
 // Variance returns the variance of the integers in the slice. Expressed as a float64.
-func (s *IntSliceM) Variance() float64 {
+func (s *Float64SliceM) Variance() float64 {
 	n := 0.0
 	mapR := func(n float64) float64 {
 		for _, v := range (*s).All() {
-			n += math.Pow(float64(v.(int))-(*s).Avg(), 2.0)
+			n += math.Pow(v.(float64)-(*s).Avg(), 2.0)
 		}
 		return n
 	}
@@ -150,6 +128,6 @@ func (s *IntSliceM) Variance() float64 {
 }
 
 // StdDev returns the standard deviation of the integers in the slice. Expressed as a float64.
-func (s *IntSliceM) StdDev() float64 {
+func (s *Float64SliceM) StdDev() float64 {
 	return math.Sqrt((*s).Variance())
 }

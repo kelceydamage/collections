@@ -32,90 +32,35 @@
 //   collections.IntSlice.Reverse()
 package collections
 
-// Slice interface allows a small amount of generic application to all collections slices.
-type Slice interface {
+// Code
+//---------------------------------------------------------------------------------------------------- <-100
+
+// BaseSlice is a basic interface for implementing generic functions
+type BaseSlice interface {
+	All() []interface{}
+	Overwrite(interface{})
+	Append(interface{})
 	Len() int
 	Swap(int, int)
-	Less(int, int) bool
-	Sort()
-	Reverse()
+	TruncateLeft(int)
+	TruncateRight(int)
 	Mirror()
 	Index(interface{}) int
 	IndexRight(interface{}) int
-	TruncateLeft(int)
-	TruncateRight(int)
-	Append(interface{}) int
+}
+
+// Slice interface allows a small amount of generic application to all collections slices.
+type Slice interface {
+	BaseSlice
+	Sort()
+	Reverse()
 }
 
 // NumSlice interface extends Slice with basic math functions.
 type NumSlice interface {
 	Slice
-	Sum() interface{}
 	Avg() float64
-	Max() (interface{}, int)
-	MaxNonZero() (interface{}, int)
-	Min() (interface{}, int)
-	MinNonZero() (interface{}, int)
+	AvgNonZero() float64
 	StdDev() float64
 	Variance() float64
-}
-
-// Swap is a function interface for the Swap method on collections slices.
-func Swap(s Slice, i, j int) {
-	s.Swap(i, j)
-}
-
-// Less is a function interface for the Less method on collections slices.
-func Less(s Slice, i, j int) bool {
-	return s.Less(i, j)
-}
-
-// Sort is a function interface for the Sort method on collections slices.
-func Sort(s Slice) {
-	s.Sort()
-}
-
-// Reverse is a function interface for the Reverse method on collections slices.
-func Reverse(s Slice) {
-	s.Reverse()
-}
-
-// Mirror is a function interface for the Mirror method on collections slices.
-func Mirror(s Slice) {
-	s.Mirror()
-}
-
-// TruncateLeft is a function interface for the TruncateLeft method on collections slices.
-func TruncateLeft(s Slice, n int) {
-	s.TruncateLeft(n)
-}
-
-// TruncateRight is a function interface for the TruncateRight method on collections slices.
-func TruncateRight(s Slice, n int) {
-	s.TruncateRight(n)
-}
-
-// Len is a function interface for the Len method on collections slices.
-//
-// This is only included for consistency and one should use the default len() function.
-func Len(s Slice) int {
-	return s.Len()
-}
-
-// Functions receiving interfaces
-//---------------------------------------------------------------------------------------------------- <-100
-
-// Index is a function interface for the Index method on collections slices.
-func Index(s Slice, j interface{}) int {
-	return s.Index(j)
-}
-
-// IndexRight is a function interface for the IndexRight method on collections slices.
-func IndexRight(s Slice, j interface{}) int {
-	return s.IndexRight(j)
-}
-
-// Append is a function interface for the append method on collections slices.
-func Append(s Slice, j interface{}) int {
-	return s.Append(j)
 }

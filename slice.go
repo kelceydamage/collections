@@ -33,6 +33,11 @@ func (e *slice) Set(x slice) {
 	(*e) = x
 }
 
+// Get returns the element at the given index.
+func (e *slice) Get(n int) interface{} {
+	return (*e)[n]
+}
+
 // Append new values to the slice.
 func (e *slice) Append(x interface{}) {
 	(*e) = append((*e), x)

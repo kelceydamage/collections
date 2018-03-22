@@ -24,57 +24,52 @@ package collections
 // Code
 //---------------------------------------------------------------------------------------------------- <-100
 
-type Queue interface {
-	Pop() (interface{}, bool)
-	New(int) Queue
-	Buffer(interface{}) (interface{}, bool)
-	All() []interface{}
+type queue struct {
+	Content Slice
+	Depth   int
 }
 
-// IntQueue ...
-type IntQueue struct {
-	queue
-}
-
-func New(q Queue, w int) Queue {
-	return q.New(w)
-}
-
-func (q IntQueue) New(w int) IntQueue {
-	newQ := IntQueue{}
-	newQ.Depth = w
-	return newQ
-}
-
-// Get returns the oldest element in the queue.
-func (q *queue) Get(n int) int {
-	return (*q).get(n).(int)
+// Get returns the element at the given index.
+func (q *queue) get(n int) interface{} {
+	return (*q).Content.All()[n]
 }
 
 // Pop removes the oldest element in the list and returns it.
-func (q *queue) Pop() (int, bool) {
-	v, ok := q.pop()
-	return v.(int), ok
+func (q *queue) pop() (interface{}, bool) {
+	if q.Content.Len() == 0 {
+		return -1, false
+	}
+	v := (*q).Content.All()[0]
+	(*q).Content.Overwrite((*q).Content.All()[1:])
+	return v, true
 }
 
 // Put inserts an element into the queue provided there is room.
-func (q *queue) Put(n int) {
-	q.put(n)
+func (q *queue) put(x interface{}) {
+	l := (*q).Content.Len()
+	if l <= (*q).Depth {
+		(*q).Content.Append(x)
+	}
 }
 
 // Cycle inserts an element while popping and returning the oldest element at the same time.
-func (q *queue) Cycle(n int) (int, bool) {
-	v, ok := q.cycle(n)
-	return v.(int), ok
+func (q *queue) cycle(x interface{}) (interface{}, bool) {
+	(*q).put(x)
+	return (*q).pop()
 }
 
 // Buffer will fill upt the queue returning nil. once the queue is full, it will start
 // popping the oldest element and return it.
-func (q *queue) Buffer(n int) (int, bool) {
-	v, ok := q.buffer(n)
-	return v.(int), ok
+func (q *queue) buffer(x interface{}) (interface{}, bool) {
+	l := (*q).Content.Len()
+	w := (*q).Depth
+	(*q).put(x)
+	if l == w+1 {
+		return (*q).pop()
+	}
+	return -1, false
 }
 
-func (q *IntQueue) All() IntSlice {
-	return q.all().(IntSlice)
+func (q *queue) all() interface{} {
+	return q.Content.All()
 }

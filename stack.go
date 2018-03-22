@@ -25,48 +25,56 @@ package collections
 // Code
 //-------------------------------------------------------------------------------------------------- <-100
 
-// IntQueue is a queue type specifically for ints.
-type IntQueue struct {
-	queue
-}
-
-// New returna a new IntQueue of [w] depth
-func (q IntQueue) New(w int) IntQueue {
-	newQ := IntQueue{}
-	newQ.Depth = w
-	return newQ
+// stack is a LIFO style queue.
+type stack struct {
+	Content Slice
+	Depth   int
 }
 
 // Get returns the element at the given index.
-func (q *IntQueue) Get(n int) int {
-	return (*q).get(n).(int)
+func (q *stack) get(n int) interface{} {
+	return (*q).Content.All()[n]
 }
 
-// Pop removes the oldest element in the list and returns it.
-func (q *IntQueue) Pop() (int, bool) {
-	v, ok := q.pop()
-	return v.(int), ok
+// Pop removes the newest element in the stack and returns it.
+func (q *stack) pop() (interface{}, bool) {
+	if q.Content.Len() == 0 {
+		return -1, false
+	}
+	l := (*q).Content.Len()
+	v := (*q).Content.All()[l]
+	(*q).Content.Overwrite((*q).Content.All()[:l-1])
+	return v, true
 }
 
-// Put inserts an element into the queue provided there is room.
-func (q *IntQueue) Put(n int) {
-	q.put(n)
+// Internal method to facilitate force().
+func (q *stack) popLeft() (interface{}, bool) {
+	if q.Content.Len() == 0 {
+		return -1, false
+	}
+	v := (*q).Content.All()[0]
+	(*q).Content.Overwrite((*q).Content.All()[1:])
+	return v, true
 }
 
-// Cycle inserts an element while popping and returning the oldest element at the same time.
-func (q *IntQueue) Cycle(n int) (int, bool) {
-	v, ok := q.cycle(n)
-	return v.(int), ok
+// Put inserts an element onto the top of the stack, provided there is room.
+func (q *stack) put(x interface{}) {
+	l := (*q).Content.Len()
+	if l <= (*q).Depth {
+		(*q).Content.Append(x)
+	}
 }
 
-// Buffer will fill upt the queue returning nil. once the queue is full, it will start
-// popping the oldest element and return it.
-func (q *IntQueue) Buffer(n int) (int, bool) {
-	v, ok := q.buffer(n)
-	return v.(int), ok
+// Force inserts an element into the queue and poplefts an element if there is no space.
+func (q *stack) force(x interface{}) {
+	l := (*q).Content.Len()
+	if l == (*q).Depth {
+		q.popLeft()
+	}
+	(*q).Content.Append(x)
 }
 
 // All returns the objects within the Stack as a slice
-func (q *IntQueue) All() IntSlice {
-	return q.all().(IntSlice)
+func (q *stack) all() interface{} {
+	return q.Content.All()
 }

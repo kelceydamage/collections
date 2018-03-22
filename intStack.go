@@ -22,46 +22,43 @@
 
 package collections
 
-import (
-	"sort"
-)
-
 // Code
 //-------------------------------------------------------------------------------------------------- <-100
 
-// BoolSlice is a slice of booleans with common methods.
-type BoolSlice struct {
-	slice
+// IntStack is a stack type specifically for ints.
+type IntStack struct {
+	stack
 }
 
-// New instantiates a new BoolSlice based on the passed slice.
-func (s *BoolSlice) New(x slice) BoolSlice {
-	i := BoolSlice{}
-	i.slice = x
-	return i
+// New returna a new IntStack of [w] depth
+func (q IntStack) New(w int) IntStack {
+	newQ := IntStack{}
+	newQ.Depth = w
+	return newQ
 }
 
-// Sort inplace sorts the slice ascending.
-//
-// Implements sort.Sort() method.
-func (s *BoolSlice) Sort() {
-	sort.Sort(*s)
+// Get returns the element at the given index.
+func (q *IntStack) Get(n int) int {
+	return (*q).get(n).(int)
 }
 
-// Reverse inplace sorts the slice descending.
-//
-// Implements sort.Sort() method. (Flakey method for now)
-func (s *BoolSlice) Reverse() {
-	sort.Sort(*s)
+// Pop removes the newest element in the stack and returns it.
+func (q *IntStack) Pop() (int, bool) {
+	v, ok := q.pop()
+	return v.(int), ok
 }
 
-// Less implementation for sort. Return true if value at index [i] not equal to [j]. This will sort
-// the slice so that all true booleans appear before false booleans.
-func (s BoolSlice) Less(i, j int) bool {
-	return s.All()[i].(bool) != s.All()[j].(bool)
+// Put inserts an element onto the top of the stack, provided there is room.
+func (q *IntStack) Put(n int) {
+	q.put(n)
 }
 
-// Slice returns a new slice with the range of data between indexes [i] and [j] int the original.
-func (s *BoolSlice) Slice(i, j int) BoolSlice {
-	return BoolSlice{(*s).All()[i:j]}
+// Force inserts an element into the queue and poplefts an element if there is no space.
+func (q *IntStack) Force(n int) {
+	q.force(n)
+}
+
+// All returns the objects within the Stack as a slice
+func (q *IntStack) All() IntSlice {
+	return q.all().(IntSlice)
 }

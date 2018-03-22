@@ -50,10 +50,9 @@ func (s *BoolSlice) Sort() {
 
 // Reverse inplace sorts the slice descending.
 //
-// Implements sort.Sort() method.
+// Implements sort.Sort() method. (Flakey method for now)
 func (s *BoolSlice) Reverse() {
 	sort.Sort(*s)
-	s.Mirror()
 }
 
 // Less implementation for sort. Return true if value at index [i] not equal to [j]. This will sort

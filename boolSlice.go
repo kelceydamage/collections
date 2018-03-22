@@ -34,6 +34,13 @@ type BoolSlice struct {
 	slice
 }
 
+// New instantiates a new BoolSlice based on the passed slice.
+func (s *BoolSlice) New(x slice) BoolSlice {
+	i := BoolSlice{}
+	i.slice = x
+	return i
+}
+
 // Sort inplace sorts the slice ascending.
 //
 // Implements sort.Sort() method.
@@ -53,4 +60,9 @@ func (s *BoolSlice) Reverse() {
 // the slice so that all true booleans appear before false booleans.
 func (s BoolSlice) Less(i, j int) bool {
 	return s.All()[i].(bool) != s.All()[j].(bool)
+}
+
+// Slice returns a new slice with the range of data between indexes [i] and [j] int the original.
+func (s *BoolSlice) Slice(i, j int) BoolSlice {
+	return BoolSlice{(*s).All()[i:j]}
 }

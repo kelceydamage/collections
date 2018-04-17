@@ -34,6 +34,16 @@ type IntSlice struct {
 	slice
 }
 
+// Set initial values for the slice.
+func (s *IntSlice) Set(x slice) {
+	(*s).Set(x)
+}
+
+// Get returns the element at the given index.
+//func (s *IntSlice) Get(x int) int {
+//	return (*s).slice.Get(x).(int)
+//}
+
 // New instantiates a new IntSlice based on the passed slice.
 func (s *IntSlice) New(x slice) IntSlice {
 	i := IntSlice{}

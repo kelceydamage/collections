@@ -38,17 +38,17 @@ package collections
 // BaseSlice is a basic interface for implementing generic functions
 type BaseSlice interface {
 	All() []interface{}
-	Overwrite(interface{}) 
+	Overwrite(interface{})
 	Append(interface{})
 	Len() int
 	Swap(int, int)
 	TruncateLeft(int)
 	TruncateRight(int)
 	Mirror()
-	Index(interface{}) int 
+	Index(interface{}) int
 	IndexRight(interface{}) int
 	Get(int) interface{}
-	Set(slice) 
+	Set(slice)
 }
 
 // Slice interface allows a small amount of generic application to all collections slices.
